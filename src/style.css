@@ -1,0 +1,77 @@
+:root {
+  --mainColor: #dd4827;
+  --islandColor: #1e1e1e;
+  --textColor: #ffffff;
+  --mainBg: #0d0c0c;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--mainBg);
+}
+
+.main {
+  margin: 16px 12%;
+  padding: 16px;
+  border-radius: 12px;
+  background: var(--islandColor);
+  color: var(--textColor);
+}
+
+.nav-btn {
+  display: flex;
+  gap: 8px;
+
+  .transition-list,
+  .popup {
+    display: none;
+  }
+
+  &:hover {
+    .transition-list {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 4px;
+    }
+  }
+}
+
+.nav-link {
+  background: var(--mainColor);
+  box-sizing: border-box;
+  padding: 4px;
+  display: block;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    background: wheat;
+  }
+}
+
+.navigation {
+  .nav-left,
+  .nav-right {
+    position: fixed;
+    top: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+.nav-left {
+  left: 32px;
+  align-items: start;
+  justify-content: start;
+}
+
+.nav-right {
+  right: 32px;
+  align-items: end;
+  justify-content: end;
+}

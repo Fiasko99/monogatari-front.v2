@@ -1,0 +1,10 @@
+.characters {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 16px;
+
+  .character {
+    padding: 12px 16px;
+  }
+}
