@@ -2,8 +2,11 @@
 import fetcher from '@/Fetcher'
 import { onBeforeMount, ref } from 'vue'
 const map = ref([])
-onBeforeMount(async () => {
-  map.value = await fetcher.get('/region/full').catch((err) => console.log(err))
+onBeforeMount(() => {
+  fetcher
+    .get('/region/full')
+    .then((res) => (map.value = res))
+    .catch((err) => console.log(err))
 })
 </script>
 <template>
