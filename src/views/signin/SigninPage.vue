@@ -1,5 +1,5 @@
 <script setup>
-import fetcher from '@/Fetcher'
+import Fetcher from '@/Fetcher'
 import { ref } from 'vue'
 import { userStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
@@ -7,6 +7,7 @@ const user = userStore()
 const router = useRouter()
 const login = ref('')
 const password = ref('')
+const fetcher = Fetcher()
 function send() {
   const data = {
     login: login.value,

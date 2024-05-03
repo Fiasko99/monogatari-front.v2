@@ -1,12 +1,16 @@
 <script setup>
-import fetcher from '@/Fetcher'
+import Fetcher from '@/Fetcher'
 import { onMounted, ref } from 'vue'
 import { useRoute, RouterLink } from 'vue-router'
 const location = ref()
-onMounted(async () => {
+const fetcher = Fetcher()
+onMounted(() => {
   const route = useRoute()
   const id = route.params.id
-  location.value = await fetcher.get('/location/' + id)
+  fetcher
+    .get('/location/' + id)
+    .then((res) => (location.value = res))
+    .catch((err) => console.log(err))
 })
 </script>
 <template>

@@ -1,9 +1,10 @@
 <script setup>
-import fetcher from '@/Fetcher'
+import Fetcher from '@/Fetcher'
 import { onMounted, ref } from 'vue'
 import { RouterLink, useRoute } from 'vue-router'
 const route = useRoute()
 const character = ref()
+const fetcher = Fetcher()
 onMounted(() => {
   fetcher
     .get('/character/' + route.params.id)

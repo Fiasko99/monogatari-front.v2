@@ -2,9 +2,10 @@
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
 import { RouterView, RouterLink } from 'vue-router'
-import fetcher from '@/Fetcher'
+import Fetcher from '@/Fetcher'
 const route = useRoute()
 const user = ref()
+const fetcher = Fetcher()
 onMounted(() => {
   fetcher
     .get('/user/' + route.params.nickname)

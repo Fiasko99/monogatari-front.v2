@@ -1,12 +1,18 @@
 import axios from 'axios'
-const config = {
-  withCredentials: true,
-  baseURL: import.meta.env.VITE_APP_API_URL
+const config = (service = 'base') => {
+  const services = {
+    base: import.meta.env.VITE_APP_API_URL,
+    rules: import.meta.env.VITE_APP_API_RULES_URL
+  }
+  return {
+    withCredentials: true,
+    baseURL: services[service]
+  }
 }
 
-class Http {
-  constructor(queryTool) {
-    this._http = queryTool.create(config)
+class Fetcher {
+  constructor(queryTool, service) {
+    this._http = queryTool.create(config(service))
     this.createConfig()
   }
 
@@ -66,4 +72,4 @@ class Http {
   }
 }
 
-export default new Http(axios)
+export default (service) => new Fetcher(axios, service)

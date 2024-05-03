@@ -1,11 +1,12 @@
 <script setup>
 import { useRouter } from 'vue-router'
 import { onMounted } from 'vue'
-import fetcher from '@/Fetcher'
+import Fetcher from '@/Fetcher'
 import { userStore } from '@/stores/user'
 
 const router = useRouter()
 const user = userStore()
+const fetcher = Fetcher()
 onMounted(() => {
   fetcher
     .get('/user/logout')

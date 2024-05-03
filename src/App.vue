@@ -1,9 +1,10 @@
 <script setup>
-import fetcher from './Fetcher'
+import Fetcher from './Fetcher'
 import { RouterLink, RouterView } from 'vue-router'
 import { onMounted } from 'vue'
 import { userStore } from '@/stores/user.js'
 const user = userStore()
+const fetcher = Fetcher()
 onMounted(() => {
   fetcher
     .baseRefreshReq()
