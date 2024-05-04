@@ -20,7 +20,7 @@ function send() {
   }
 
   fetcher
-    .post('/user/signin', data)
+    .post('', data)
     .then((res) => {
       user.fieldUser(res.userData)
       router.push('/')
@@ -49,7 +49,7 @@ function send() {
         <input class="form-group-input" id="mono-gatari-email" type="text" v-model="email" />
       </div>
       <div class="btns">
-        <button @click="send" class="send">Отправить</button>
+        <button disabled @click="send" class="send">Отправить</button>
       </div>
     </div>
   </div>

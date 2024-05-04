@@ -20,6 +20,11 @@ onMounted(() => {
       <router-link :to="`/profile/${route.params.nickname}/settings`">Настройки</router-link>
     </div>
     <hr />
+    <div class="user">
+      <div class="nickname">Никнейм {{ user.nickname }}</div>
+      <div class="email">Почта {{ user.email }}</div>
+    </div>
+    <hr />
     <router-view :characters="user.characters" />
   </div>
 </template>
