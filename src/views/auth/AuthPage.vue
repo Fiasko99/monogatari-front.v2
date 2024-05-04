@@ -13,12 +13,12 @@ onMounted(() => {
 </script>
 <template>
   <div>
-    <h1 align="center">Авторизация</h1>
-    <router-view />
-    <div class="btns">
+    <div class="auth-navigation">
       <router-link class="link" to="/auth">Войти</router-link>
-      <router-link class="link" to="/auth/signup">Зарегистрироваться</router-link>
+      <router-link class="link" to="/auth/signup">Регистрация</router-link>
     </div>
+    <hr />
+    <router-view />
   </div>
 </template>
 <style scoped src="./style.css"></style>

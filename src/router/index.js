@@ -6,12 +6,32 @@ const router = createRouter({
     {
       path: '/',
       name: 'Main',
-      component: () => import('@/views/home/HomePage.vue'),
+      component: () => import('@/views/main/MainPage.vue'),
       children: [
         {
-          path: 'home',
+          path: '',
           name: 'Home',
           component: () => import('@/views/home/HomePage.vue')
+        },
+        {
+          path: 'rules',
+          name: 'Rules',
+          component: () => import('@/views/rules/RulesPage.vue')
+        },
+        {
+          path: 'active',
+          name: 'Active',
+          component: () => import('@/views/active/ActivePage.vue')
+        },
+        {
+          path: 'history',
+          name: 'History',
+          component: () => import('@/views/history/HistoryPage.vue')
+        },
+        {
+          path: 'events',
+          name: 'Events',
+          component: () => import('@/views/events/EventsPage.vue')
         }
       ]
     },
@@ -19,26 +39,6 @@ const router = createRouter({
       path: '/location/:id',
       name: 'Location',
       component: () => import('@/views/location/LocationPage.vue')
-    },
-    {
-      path: '/rules',
-      name: 'Rules',
-      component: () => import('@/views/rules/RulesPage.vue')
-    },
-    {
-      path: '/active',
-      name: 'Active',
-      component: () => import('@/views/active/ActivePage.vue')
-    },
-    {
-      path: '/history',
-      name: 'History',
-      component: () => import('@/views/history/HistoryPage.vue')
-    },
-    {
-      path: '/events',
-      name: 'Events',
-      component: () => import('@/views/events/EventsPage.vue')
     },
     {
       path: '/character/:id',

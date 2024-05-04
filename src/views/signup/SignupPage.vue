@@ -29,25 +29,28 @@ function send() {
 }
 </script>
 <template>
-  <div class="form">
-    <div class="form-group">
-      <label class="form-group-label" for="mono-gatari-login">Логин</label>
-      <input class="form-group-input" id="mono-gatari-login" type="text" v-model="password" />
-    </div>
-    <div class="form-group">
-      <label class="form-group-label" for="mono-gatari-password">Пароль</label>
-      <input class="form-group-input" id="mono-gatari-password" type="password" v-model="login" />
-    </div>
-    <div class="form-group">
-      <label class="form-group-label" for="mono-gatari-nickname">Имя</label>
-      <input class="form-group-input" id="mono-gatari-nickname" type="text" v-model="nickname" />
-    </div>
-    <div class="form-group">
-      <label class="form-group-label" for="mono-gatari-email">Почта</label>
-      <input class="form-group-input" id="mono-gatari-email" type="text" v-model="email" />
-    </div>
-    <div class="btns">
-      <button @click="send" class="send">Отправить</button>
+  <div>
+    <h1 align="center">Регистрация</h1>
+    <div class="form">
+      <div class="form-group">
+        <label class="form-group-label" for="mono-gatari-login">Логин</label>
+        <input class="form-group-input" id="mono-gatari-login" type="text" v-model="password" />
+      </div>
+      <div class="form-group">
+        <label class="form-group-label" for="mono-gatari-password">Пароль</label>
+        <input class="form-group-input" id="mono-gatari-password" type="password" v-model="login" />
+      </div>
+      <div class="form-group">
+        <label class="form-group-label" for="mono-gatari-nickname">Имя</label>
+        <input class="form-group-input" id="mono-gatari-nickname" type="text" v-model="nickname" />
+      </div>
+      <div class="form-group">
+        <label class="form-group-label" for="mono-gatari-email">Почта</label>
+        <input class="form-group-input" id="mono-gatari-email" type="text" v-model="email" />
+      </div>
+      <div class="btns">
+        <button @click="send" class="send">Отправить</button>
+      </div>
     </div>
   </div>
 </template>
