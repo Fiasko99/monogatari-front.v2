@@ -1,7 +1,7 @@
 <script setup>
 import Fetcher from '@/Fetcher'
 import { onMounted, ref } from 'vue'
-const fetcher = Fetcher('rules')
+const fetcher = Fetcher('richHtml')
 const rules = ref()
 onMounted(() => {
   fetcher

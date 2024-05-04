@@ -1,0 +1,16 @@
+.post-info {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+
+  .post {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .info {
+    width: 10%;
+  }
+}

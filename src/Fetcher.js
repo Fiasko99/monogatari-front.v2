@@ -2,7 +2,7 @@ import axios from 'axios'
 const config = (service = 'base') => {
   const services = {
     base: import.meta.env.VITE_APP_API_URL,
-    rules: import.meta.env.VITE_APP_API_RULES_URL
+    richHtml: import.meta.env.VITE_APP_API_RICH_HTML_URL
   }
   return {
     withCredentials: true,
