@@ -20,7 +20,7 @@ function send() {
   }
 
   fetcher
-    .post('', data)
+    .post('/user/signup', data)
     .then((res) => {
       user.fieldUser(res.userData)
       router.push('/')
