@@ -22,6 +22,7 @@ function send() {
   fetcher
     .post('/user/signup', data)
     .then((res) => {
+      fetcher.setToken(res.accessToken)
       user.fieldUser(res.userData)
       router.push('/')
     })

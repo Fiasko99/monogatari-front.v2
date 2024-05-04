@@ -1,19 +1,12 @@
 import axios from 'axios'
-const config = (service = 'base') => {
-  const services = {
-    base: import.meta.env.VITE_APP_API_URL,
-    richHtml: import.meta.env.VITE_APP_API_RICH_HTML_URL
-  }
-  return {
-    withCredentials: true,
-    baseURL: services[service]
-  }
+const config = {
+  withCredentials: true
 }
 
 class Fetcher {
-  constructor(queryTool, service) {
-    this._http = queryTool.create(config(service))
-    this.createConfig()
+  constructor(queryTool) {
+    this._http = queryTool.create(config)
+    this._createConfig()
   }
 
   async reqWrapper(req, ...reqArgs) {
@@ -64,12 +57,25 @@ class Fetcher {
     }
   }
 
-  createConfig() {
+  _createConfig() {
     this._http.interceptors.response.use(
       (res) => res.data,
       (err) => Promise.reject(err.response.data)
     )
   }
+
+  _configBaseUrl(service = 'base') {
+    const services = {
+      base: import.meta.env.VITE_APP_API_URL,
+      richHtml: import.meta.env.VITE_APP_API_RICH_HTML_URL
+    }
+    this._http.defaults.baseURL = services[service]
+  }
 }
 
-export default (service) => new Fetcher(axios, service)
+const instance = new Fetcher(axios)
+
+export default (service) => {
+  instance._configBaseUrl(service)
+  return instance
+}

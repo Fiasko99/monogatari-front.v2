@@ -17,6 +17,7 @@ function send() {
   fetcher
     .post('/user/signin', data)
     .then((res) => {
+      fetcher.setToken(res.accessToken)
       user.fieldUser(res.userData)
       router.push('/')
     })
