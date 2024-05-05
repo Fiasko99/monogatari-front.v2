@@ -26,7 +26,7 @@ function send() {
       user.fieldUser(res.userData)
       router.push('/')
     })
-    .catch((err) => console.log(err))
+    .catch((err) => console.error(err))
 }
 </script>
 <template>

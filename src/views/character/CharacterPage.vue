@@ -9,7 +9,7 @@ onMounted(() => {
   fetcher
     .get('/character/' + route.params.id)
     .then((res) => (character.value = res))
-    .catch((err) => console.log(err))
+    .catch((err) => console.error(err))
 })
 </script>
 <template>

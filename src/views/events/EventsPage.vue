@@ -8,7 +8,7 @@ onMounted(() => {
   fetcher
     .get('/events')
     .then((res) => (events.value = res))
-    .catch((err) => console.log(err))
+    .catch((err) => console.error(err))
 })
 </script>
 <template>

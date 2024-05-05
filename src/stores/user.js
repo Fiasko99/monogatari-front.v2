@@ -23,6 +23,16 @@ export const userStore = defineStore('user', {
   actions: {
     fieldUser(data = {}) {
       this.user = data
+      if (data.characters) {
+        this.user.characters.forEach((character) => {
+          if (character.active) {
+            this.character = character
+          }
+        })
+      }
+    },
+    fieldCharacter(data = {}) {
+      this.character = data
     }
   }
 })

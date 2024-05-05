@@ -9,7 +9,7 @@ onMounted(() => {
   fetcher
     .get('/location/active')
     .then((res) => (locations.value = res))
-    .catch((err) => console.log(err))
+    .catch((err) => console.error(err))
 })
 </script>
 <template>

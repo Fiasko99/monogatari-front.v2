@@ -1,17 +1,71 @@
 <script setup>
+import Fetcher from '@/Fetcher'
+import { userStore } from '@/stores/user'
+import { ref } from 'vue'
+
 defineProps({
   characters: Array
 })
+
+const emit = defineEmits(['updateData'])
+const user = userStore()
+const fetcher = Fetcher()
+const addNewCharacter = ref(false)
+const nameNewCharacter = ref('')
+function changeAddNewCharacter() {
+  addNewCharacter.value = !addNewCharacter.value
+}
+function createNewCharacter() {
+  const data = {
+    name: nameNewCharacter.value
+  }
+  fetcher
+    .post('/character/create', data)
+    .then(() => emit('updateData'))
+    .catch((err) => console.error(err))
+}
+function activateCharacter(characterId) {
+  fetcher
+    .get('/character/activate/' + characterId)
+    .then((res) => {
+      user.fieldCharacter(res)
+      emit('updateData')
+    })
+    .catch((err) => console.error(err))
+}
 </script>
 <template>
   <div v-if="characters.length > 0">
-    <h1 align="center">Персонажи</h1>
+    <div class="title">
+      <h1>Персонажи</h1>
+      <button @click="changeAddNewCharacter" class="add-new-character">+</button>
+    </div>
+    <div v-if="addNewCharacter" class="form-new-character">
+      <div class="form-group">
+        <label class="form-group-label" for="mono-gatari-name">Имя персонажа</label>
+        <input
+          class="form-group-input"
+          id="mono-gatari-name"
+          type="text"
+          v-model="nameNewCharacter"
+        />
+      </div>
+      <div class="btns">
+        <button @click="createNewCharacter" class="create">Создать</button>
+      </div>
+    </div>
     <div class="characters">
       <div class="character" v-for="character of characters" :key="character.id">
         <router-link :to="`/character/${character.id}`" class="name">{{
           character.name
         }}</router-link>
-        <div class="active">{{ character.active ? 'Активен' : 'Неактивен' }}</div>
+        <button
+          :disabled="character.active"
+          @click="activateCharacter(character.id)"
+          class="active"
+        >
+          {{ character.active ? 'Активен' : 'Неактивен' }}
+        </button>
       </div>
     </div>
   </div>
