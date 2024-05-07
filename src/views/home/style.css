@@ -1,0 +1,68 @@
+.kingdoms {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+
+  .kingdom {
+    background: dimgray;
+    flex-basis: 45%;
+    flex-grow: 1;
+    padding: 8px 16px;
+    border-radius: 12px;
+
+    & > .title {
+      margin: 6px 0;
+      font-weight: bolder;
+      font-size: 32px;
+    }
+  }
+}
+
+.areas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+
+  .area {
+    background: gray;
+    flex-basis: 45%;
+    flex-grow: 1;
+    padding: 6px 12px;
+    border-radius: 8px;
+
+    & > .title {
+      margin: 6px 0;
+      font-weight: bold;
+      font-size: 24px;
+    }
+  }
+}
+
+.locations {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+
+  .location {
+    flex-basis: 45%;
+    flex-grow: 1;
+
+    .title {
+      display: block;
+      font-size: 16px;
+      text-decoration: none;
+      color: var(--textColor);
+
+      &:hover {
+        color: wheat;
+      }
+    }
+  }
+}
+
+.title {
+  text-align: center;
+}

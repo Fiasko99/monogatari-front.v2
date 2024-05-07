@@ -59,6 +59,7 @@ function activateCharacter(characterId) {
         <router-link :to="`/character/${character.id}`" class="name">{{
           character.name
         }}</router-link>
+        <div>{{ new Date(character.createdAt).getMilliseconds() }}ms</div>
         <button
           :disabled="character.active"
           @click="activateCharacter(character.id)"

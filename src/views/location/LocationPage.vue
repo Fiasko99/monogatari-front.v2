@@ -53,12 +53,17 @@ onMounted(() => {
       </div>
     </div>
     <div v-for="post in location.posts" :key="post.id">
-      <div>
-        <router-link :to="'/profile/' + post.character.user.nickname">{{
-          post.character.user.nickname
-        }}</router-link>
-        ->
-        <router-link :to="`/character/${post.character.id}`">{{ post.character.name }}</router-link>
+      <div class="title">
+        <div>
+          <router-link :to="'/profile/' + post.character.user.nickname">{{
+            post.character.user.nickname
+          }}</router-link>
+          ->
+          <router-link :to="`/character/${post.character.id}`">{{
+            post.character.name
+          }}</router-link>
+        </div>
+        <div>{{ post.id }} {{ new Date(post.createdAt).getMilliseconds() }}ms</div>
       </div>
       <div>{{ post.text }}</div>
       <hr />

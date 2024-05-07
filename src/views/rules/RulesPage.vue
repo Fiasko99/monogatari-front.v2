@@ -12,7 +12,6 @@ onMounted(() => {
 </script>
 <template>
   <div>
-    <component :is="'h2'" />
     <h1 align="center">Правила</h1>
     <div v-if="rules" class="rules">
       <div v-for="{ key, title, content } in rules" :key="key" class="rule">

@@ -22,9 +22,14 @@ onMounted(() => {
     <hr />
     <div class="posts">
       <div class="post" v-for="post in character.posts" :key="post.id">
-        <div class="location">
-          {{ post.location.area.region.name }} -> {{ post.location.area.name }} ->
-          <router-link :to="`/location/${post.location.id}`">{{ post.location.name }}</router-link>
+        <div class="title">
+          <div class="location">
+            {{ post.location.area.region.name }} -> {{ post.location.area.name }} ->
+            <router-link :to="`/location/${post.location.id}`">{{
+              post.location.name
+            }}</router-link>
+          </div>
+          <div>{{ post.id }} {{ new Date(post.createdAt).getMilliseconds() }}ms</div>
         </div>
         <div class="text">{{ post.text }}</div>
       </div>

@@ -1,6 +1,14 @@
 .main-navigation {
   display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-evenly;
-  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .link {
+    color: var(--mainColor);
+    text-decoration: none;
+
+    &:hover {
+      color: wheat;
+    }
+  }
 }
