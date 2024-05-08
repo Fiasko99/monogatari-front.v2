@@ -2,6 +2,7 @@
 import Fetcher from '@/Fetcher'
 import { userStore } from '@/stores/user'
 import { ref } from 'vue'
+import { useRoute } from 'vue-router'
 
 defineProps({
   characters: Array
@@ -9,6 +10,7 @@ defineProps({
 
 const emit = defineEmits(['updateData'])
 const user = userStore()
+const route = useRoute()
 const fetcher = Fetcher()
 const addNewCharacter = ref(false)
 const nameNewCharacter = ref('')
@@ -38,7 +40,13 @@ function activateCharacter(characterId) {
   <div v-if="characters.length > 0">
     <div class="title">
       <h1>Персонажи</h1>
-      <button @click="changeAddNewCharacter" class="add-new-character">+</button>
+      <button
+        v-if="route.params.nickname === user.data.nickname"
+        @click="changeAddNewCharacter"
+        class="add-new-character"
+      >
+        +
+      </button>
     </div>
     <div v-if="addNewCharacter" class="form-new-character">
       <div class="form-group">

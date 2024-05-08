@@ -47,8 +47,11 @@
   gap: 8px;
 
   .location {
+    padding: 4px 0;
     flex-basis: 45%;
     flex-grow: 1;
+    background: lightslategray;
+    border-radius: 6px;
 
     .title {
       display: block;

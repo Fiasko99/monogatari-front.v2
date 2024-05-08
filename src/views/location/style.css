@@ -4,7 +4,15 @@
   gap: 12px;
 
   .create-post-btn {
+    background: var(--mainColor);
+    border: none;
     cursor: pointer;
+    border-radius: 2px;
+    padding: 6px 12px;
+
+    &:hover {
+      background: wheat;
+    }
   }
 
   .post-form {
@@ -13,8 +21,13 @@
     gap: 8px;
 
     .textarea {
-      padding: 6px 12px;
+      padding: 12px 6px;
       resize: vertical;
+      background: white;
+      border-radius: 2px;
+      color: #000;
+      white-space: pre-wrap;
+      display: inline-block;
     }
 
     .btns {
@@ -23,8 +36,38 @@
       gap: 8px;
 
       .send {
+        background: var(--mainColor);
+        border: none;
         cursor: pointer;
+        border-radius: 2px;
+        padding: 6px 12px;
+
+        &:hover {
+          background: wheat;
+        }
       }
     }
+  }
+}
+
+.style-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+
+  .style-btn {
+    background: var(--mainColor);
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+    padding: 6px 12px;
+
+    &:hover {
+      background: wheat;
+    }
+  }
+
+  .active-style-btn {
+    background: wheat;
   }
 }
