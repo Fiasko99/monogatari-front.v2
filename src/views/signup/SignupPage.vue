@@ -30,7 +30,7 @@ function send() {
 }
 </script>
 <template>
-  <div>
+  <form @submit.prevent="send">
     <h1 align="center">Регистрация</h1>
     <div class="form">
       <div class="form-group">
@@ -50,9 +50,9 @@ function send() {
         <input class="form-group-input" id="mono-gatari-email" type="text" v-model="email" />
       </div>
       <div class="btns">
-        <button disabled @click="send" class="send">Отправить</button>
+        <button type="submit" class="send">Отправить</button>
       </div>
     </div>
-  </div>
+  </form>
 </template>
 <style scoped src="./style.css"></style>

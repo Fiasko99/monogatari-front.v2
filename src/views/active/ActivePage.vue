@@ -10,7 +10,6 @@ onMounted(() => {
     .get('/location/active')
     .then((res) => {
       locations.value = res
-      console.log(res)
     })
     .catch((err) => console.error(err))
 })

@@ -25,14 +25,16 @@ export const userStore = defineStore('user', {
       this.user = data
       if (data.characters) {
         this.user.characters.forEach((character) => {
-          if (character.active) {
-            this.character = character
-          }
+          this.fieldCharacter(character)
         })
+      } else {
+        this.character = {}
       }
     },
     fieldCharacter(data = {}) {
-      this.character = data
+      if (data.active) {
+        this.character = data
+      }
     }
   }
 })

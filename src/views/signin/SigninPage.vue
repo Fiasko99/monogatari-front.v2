@@ -25,7 +25,7 @@ function send() {
 }
 </script>
 <template>
-  <div>
+  <form @submit.prevent="send">
     <h1 align="center">Вход</h1>
     <div class="form">
       <div class="form-group">
@@ -37,9 +37,9 @@ function send() {
         <input class="form-group-input" id="mono-gatari-password" type="password" v-model="login" />
       </div>
       <div class="btns">
-        <button @click="send" class="send">Войти</button>
+        <button type="submit" class="send">Войти</button>
       </div>
     </div>
-  </div>
+  </form>
 </template>
 <style scoped src="./style.css"></style>

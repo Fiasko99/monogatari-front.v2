@@ -77,3 +77,70 @@ body {
   align-items: end;
   justify-content: end;
 }
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .content {
+    background: gray;
+    border-radius: 12px;
+    min-width: 200px;
+    max-width: 85%;
+    min-height: 100px;
+    max-height: 90%;
+    padding: 12px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      width: 8px; /* ширина всей полосы прокрутки */
+      scroll-padding: 12px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--islandColor); /* цвет бегунка */
+      border-radius: 6px; /* округлось бегунка */
+    }
+
+    .title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .text {
+        font-size: 24px;
+        font-weight: bolder;
+      }
+
+      .close-modal {
+        background: var(--mainColor);
+        border: none;
+        box-sizing: border-box;
+        padding: 4px;
+        display: block;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        cursor: pointer;
+
+        &:hover {
+          background: wheat;
+        }
+      }
+    }
+
+    .slot {
+      .text {
+        display: block;
+        margin: 12px 0;
+      }
+    }
+  }
+}
