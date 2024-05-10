@@ -2,11 +2,9 @@
 import Fetcher from '@/Fetcher'
 import { userStore } from '@/stores/user'
 import { onMounted, ref } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import useModal from '@/helpers/openModal/index.js'
+import { useRoute, RouterLink } from 'vue-router'
 
 const route = useRoute()
-const openModal = useModal(useRouter(), route)
 const user = userStore()
 const fetcher = Fetcher()
 const location = ref()
@@ -56,7 +54,6 @@ onMounted(() => {
 </script>
 <template>
   <div v-if="location">
-    <button @click="openModal('Home')">Модалка</button>
     <h1 align="center">Локация</h1>
     <h2>
       {{ location.area.region.name }}
@@ -96,11 +93,12 @@ onMounted(() => {
     <div v-for="post in location.posts" :key="post.id">
       <div class="title">
         <div>
-          <router-link :to="'/profile/' + post.character.user.nickname">{{
-            post.character.user.nickname
-          }}</router-link>
+          <router-link
+            :to="{ name: 'Characters', params: { nickname: post.character.user.nickname } }"
+            >{{ post.character.user.nickname }}</router-link
+          >
           ->
-          <router-link :to="`/character/${post.character.id}`">{{
+          <router-link :to="{ name: 'Character', params: { id: post.character.id } }">{{
             post.character.name
           }}</router-link>
         </div>
@@ -111,6 +109,5 @@ onMounted(() => {
     </div>
   </div>
   <h1 v-else>Локация не существует</h1>
-  <router-view />
 </template>
 <style scoped src="./style.css"></style>

@@ -25,7 +25,7 @@ onMounted(() => {
         <div class="title">
           <div class="location">
             {{ post.location.area.region.name }} -> {{ post.location.area.name }} ->
-            <router-link :to="`/location/${post.location.id}`">{{
+            <router-link :to="{ name: 'Location', params: { id: post.location.id } }">{{
               post.location.name
             }}</router-link>
           </div>

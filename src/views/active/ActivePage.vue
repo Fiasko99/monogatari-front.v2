@@ -22,7 +22,9 @@ onMounted(() => {
         <div class="title">
           <div class="path">
             {{ location.area.region.name }} -> {{ location.area.name }} ->
-            <router-link :to="'/location/' + location.id">{{ location.name }}</router-link>
+            <router-link :to="{ name: 'Location', params: { id: location.id } }">{{
+              location.name
+            }}</router-link>
           </div>
           <div class="post-id">
             {{ location.posts[0].id }}
@@ -32,13 +34,18 @@ onMounted(() => {
         <div class="post-info">
           <div class="post">{{ location.posts[0].text }}</div>
           <div class="info">
-            <router-link :to="'/profile/' + location.posts[0].character.user.nickname">{{
-              location.posts[0].character.user.nickname
-            }}</router-link>
+            <router-link
+              :to="{
+                name: 'Characters',
+                params: { nickname: location.posts[0].character.user.nickname }
+              }"
+              >{{ location.posts[0].character.user.nickname }}</router-link
+            >
             ->
-            <router-link :to="'/character/' + location.posts[0].character.id">{{
-              location.posts[0].character.name
-            }}</router-link>
+            <router-link
+              :to="{ name: 'Character', params: { id: location.posts[0].character.id } }"
+              >{{ location.posts[0].character.name }}</router-link
+            >
           </div>
         </div>
         <hr />

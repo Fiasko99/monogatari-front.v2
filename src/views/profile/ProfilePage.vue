@@ -19,8 +19,12 @@ onMounted(() => {
 <template>
   <div v-if="user">
     <div class="profile-navigation">
-      <router-link :to="`/profile/${route.params.nickname}`">Персонажи</router-link>
-      <router-link :to="`/profile/${route.params.nickname}/settings`">Настройки</router-link>
+      <router-link :to="{ name: 'Characters', params: { nickname: route.params.nickname } }"
+        >Персонажи</router-link
+      >
+      <router-link :to="{ name: 'Settings', params: { nickname: route.params.nickname } }"
+        >Настройки</router-link
+      >
     </div>
     <hr />
     <div class="user">

@@ -64,7 +64,7 @@ function activateCharacter(characterId) {
     </div>
     <div class="characters">
       <div class="character" v-for="character of characters" :key="character.id">
-        <router-link :to="`/character/${character.id}`" class="name">{{
+        <router-link :to="{ name: 'Character', params: { id: character.id } }" class="name">{{
           character.name
         }}</router-link>
         <div>{{ new Date(character.createdAt).getMilliseconds() }}ms</div>

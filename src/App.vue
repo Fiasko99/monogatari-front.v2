@@ -18,42 +18,49 @@ onMounted(() => {
     <nav class="navigation">
       <div class="nav-left">
         <div title="Форум" class="nav-btn">
-          <router-link to="/" class="nav-link">
+          <router-link :to="{ name: 'Home' }" class="nav-link">
             <img src="./assets/home.svg" alt="" />
           </router-link>
           <div class="transition-list">
-            <router-link to="/rules" class="link">Правила</router-link>
-            <router-link to="/active" class="link">Актив</router-link>
-            <router-link to="/history" class="link">История</router-link>
-            <router-link to="/events" class="link">События</router-link>
+            <router-link :to="{ name: 'Active' }" class="link">Актив</router-link>
+            <router-link :to="{ name: 'Rules' }" class="link">Правила</router-link>
+            <router-link :to="{ name: 'History' }" class="link">История</router-link>
+            <router-link :to="{ name: 'Events' }" class="link">События</router-link>
           </div>
         </div>
         <div v-if="user.getAuthStatus" title="Профиль" class="nav-btn">
-          <router-link :to="'/profile/' + user.data.nickname" class="nav-link">
+          <router-link
+            :to="{ name: 'Characters', params: { nickname: user.data.nickname } }"
+            class="nav-link"
+          >
             <img src="./assets/profile.svg" alt="" />
           </router-link>
           <div class="transition-list">
             <router-link
               v-if="user.activeCharacter"
-              :to="`/character/${user.activeCharacter.id}`"
+              :to="{ name: 'Character', params: { id: user.activeCharacter.id } }"
               class="link"
               >Персонаж</router-link
             >
-            <router-link :to="`/profile/${user.data.nickname}/settings`" class="link"
+            <router-link
+              :to="{ name: 'Settings', params: { nickname: user.data.nickname } }"
+              class="link"
               >Настройки</router-link
             >
-            <router-link :to="`/profile/${user.data.nickname}/logout`" class="link"
+            <router-link
+              :to="{ name: 'Logout', params: { nickname: user.data.nickname } }"
+              class="link"
               >Выйти</router-link
             >
           </div>
         </div>
         <div v-else title="Профиль" class="nav-btn">
-          <router-link to="/auth" class="nav-link">
+          <router-link :to="{ name: 'Signin' }" class="nav-link">
             <img src="./assets/profile.svg" alt="" />
           </router-link>
           <div class="transition-list">
-            <router-link to="/auth" class="link">Войти</router-link>
-            <router-link to="/auth/signup" class="link">Регистрация</router-link>
+            <router-link :to="{ name: 'Signin' }" class="link">Войти</router-link>
+            <router-link :to="{ name: 'Signup' }" class="link">Регистрация</router-link>
           </div>
         </div>
       </div>

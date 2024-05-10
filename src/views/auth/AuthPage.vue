@@ -14,8 +14,8 @@ onMounted(() => {
 <template>
   <div>
     <div class="auth-navigation">
-      <router-link class="link" to="/auth">Войти</router-link>
-      <router-link class="link" to="/auth/signup">Регистрация</router-link>
+      <router-link class="link" :to="{ name: 'Signin' }">Войти</router-link>
+      <router-link class="link" :to="{ name: 'Signup' }">Регистрация</router-link>
     </div>
     <hr />
     <router-view />

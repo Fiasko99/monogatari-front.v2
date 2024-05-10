@@ -4,11 +4,11 @@ import { RouterView, RouterLink } from 'vue-router'
 <template>
   <div>
     <div class="main-navigation">
-      <router-link class="link" to="/">Мир</router-link>
-      <router-link class="link" to="/rules">Правила</router-link>
-      <router-link class="link" to="/active">Активные темы</router-link>
-      <router-link class="link" to="/history">История мира</router-link>
-      <router-link class="link" to="/events">События</router-link>
+      <router-link class="link" :to="{ name: 'Home' }">Мир</router-link>
+      <router-link class="link" :to="{ name: 'Active' }">Активные темы</router-link>
+      <router-link class="link" :to="{ name: 'Rules' }">Правила</router-link>
+      <router-link class="link" :to="{ name: 'History' }">История мира</router-link>
+      <router-link class="link" :to="{ name: 'Events' }">События</router-link>
     </div>
     <hr />
     <router-view />

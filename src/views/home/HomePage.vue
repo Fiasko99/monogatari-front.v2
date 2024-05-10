@@ -1,6 +1,7 @@
 <script setup>
 import Fetcher from '@/Fetcher'
 import { onMounted, ref } from 'vue'
+
 const map = ref()
 const fetcher = Fetcher()
 
@@ -26,7 +27,7 @@ onMounted(() => {
                 :key="kingdom.name + area.name + location.name"
                 class="location"
               >
-                <router-link :to="'/location/' + location.id" class="title">
+                <router-link :to="{ name: 'Location', params: { id: location.id } }" class="title">
                   {{ location.name }}
                 </router-link>
               </div>
@@ -38,7 +39,6 @@ onMounted(() => {
       </div>
     </div>
     <div v-else class="kingdoms">В мире нет регионов</div>
-    <router-view />
   </div>
 </template>
 <style scoped src="./style.css"></style>

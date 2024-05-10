@@ -10,6 +10,25 @@
   justify-content: center;
   align-items: center;
 
+  .btns {
+    margin: 12px 6px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+
+    .btn {
+      background: var(--mainColor);
+      border: none;
+      cursor: pointer;
+      border-radius: 2px;
+      padding: 6px 12px;
+
+      &:hover {
+        background: wheat;
+      }
+    }
+  }
+
   .slot {
     background: var(--islandColor);
     padding: 6px 12px;
