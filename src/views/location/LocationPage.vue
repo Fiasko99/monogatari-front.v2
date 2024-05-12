@@ -2,14 +2,21 @@
 import Fetcher from '@/Fetcher'
 import { userStore } from '@/stores/user'
 import { onMounted, ref } from 'vue'
-import { useRoute, RouterLink } from 'vue-router'
+import { useRoute, useRouter, RouterLink } from 'vue-router'
 
 const route = useRoute()
+const router = useRouter()
 const user = userStore()
 const fetcher = Fetcher()
+
 const location = ref()
-const postText = ref(null)
+const posts = ref()
+
+const postsCount = ref()
+const showPostsCount = ref(10)
+
 const isShowPostForm = ref(false)
+const postText = ref(null)
 
 const locationId = route.params.id
 const character = user.activeCharacter
@@ -30,11 +37,39 @@ function sendPost() {
     .catch((err) => console.error(err))
 }
 
-function updateData() {
+function getPosts() {
+  let url = `/post/location/${locationId}`
+  const { page, limit } = route.query
+  if (page || limit) {
+    const queryParams = []
+    page && queryParams.push(`offset=${(page - 1) * showPostsCount.value}`)
+    limit && queryParams.push(`limit=${limit}`)
+    url += `/?${queryParams.join('&')}`
+  }
+  fetcher
+    .get(url)
+    .then((res) => (posts.value = res))
+    .catch((err) => console.error(err))
+}
+
+function getLocation() {
   fetcher
     .get('/location/' + locationId)
     .then((res) => (location.value = res))
     .catch((err) => console.error(err))
+}
+
+function getPostsCount() {
+  fetcher
+    .get('/post/count/location/' + locationId)
+    .then((res) => (postsCount.value = res))
+    .catch((err) => console.error(err))
+}
+
+function updateData() {
+  getPosts()
+  getLocation()
+  getPostsCount()
 }
 
 function applyFormatterText(type, tag = null) {
@@ -46,6 +81,28 @@ function paste(e) {
   e.preventDefault()
   var text = (e.originalEvent || e).clipboardData.getData('text/plain')
   document.execCommand('paste', false, text)
+}
+
+function changePage(e) {
+  router.replace({
+    name: 'Location',
+    params: { id: route.params.id },
+    query: {
+      ...route.query,
+      page: e.target.value
+    }
+  })
+}
+
+function changeShowPostsCount(e) {
+  router.replace({
+    name: 'Location',
+    params: { id: route.params.id },
+    query: {
+      ...route.query,
+      limit: e.target.value
+    }
+  })
 }
 
 onMounted(() => {
@@ -90,22 +147,39 @@ onMounted(() => {
         </div>
       </div>
     </div>
-    <div v-for="post in location.posts" :key="post.id">
-      <div class="title">
-        <div>
-          <router-link
-            :to="{ name: 'Characters', params: { nickname: post.character.user.nickname } }"
-            >{{ post.character.user.nickname }}</router-link
-          >
-          ->
-          <router-link :to="{ name: 'Character', params: { id: post.character.id } }">{{
-            post.character.name
-          }}</router-link>
+    <div v-if="postsCount" class="pagination">
+      <select @change="changeShowPostsCount" v-model="showPostsCount">
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+      </select>
+      <input
+        type="number"
+        :min="1"
+        :max="Math.ceil(postsCount / showPostsCount)"
+        :placeholder="route.query.page"
+        @input="changePage"
+      />
+      <button @click="getPosts">Перейти</button>
+    </div>
+    <div v-if="posts" class="posts">
+      <div v-for="post in posts" :key="post.id">
+        <div class="title">
+          <div>
+            <router-link
+              :to="{ name: 'Characters', params: { nickname: post.character.user.nickname } }"
+              >{{ post.character.user.nickname }}</router-link
+            >
+            ->
+            <router-link :to="{ name: 'Character', params: { id: post.character.id } }">{{
+              post.character.name
+            }}</router-link>
+          </div>
+          <div>{{ post.id }} {{ new Date(post.createdAt).getMilliseconds() }}ms</div>
         </div>
-        <div>{{ post.id }} {{ new Date(post.createdAt).getMilliseconds() }}ms</div>
+        <div v-html="post.text"></div>
+        <hr />
       </div>
-      <div v-html="post.text"></div>
-      <hr />
     </div>
   </div>
   <h1 v-else>Локация не существует</h1>
