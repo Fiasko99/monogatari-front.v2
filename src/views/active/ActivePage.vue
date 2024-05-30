@@ -1,57 +1,98 @@
 <script setup>
 import Fetcher from '@/Fetcher'
 import { onMounted, ref } from 'vue'
-import { RouterLink } from 'vue-router'
+import { useRoute } from 'vue-router'
+import CommonLink from '@/ui-kit/link/CommonLink.vue'
+import CommonLoading from '@/ui-kit/loading/CommonLoading.vue'
+import CommonPagination from '@/ui-kit/pagination/CommonPagination.vue'
 
-const locations = ref()
+const route = useRoute()
+
+const activeLocations = ref()
+const countActiveLocations = ref()
+const loadingActiveLocations = ref(false)
 const fetcher = Fetcher()
-onMounted(() => {
+
+function getActiveLocations() {
+  loadingActiveLocations.value = true
+  let url = `/activeLocations/getAll`
+  const { page, limit } = route.query
+  if (page || limit) {
+    const queryParams = []
+    page && queryParams.push(`page=${page}`)
+    limit && queryParams.push(`limit=${limit}`)
+    url += `/?${queryParams.join('&')}`
+  }
   fetcher
-    .get('/location/active')
-    .then((res) => {
-      locations.value = res
-    })
+    .get(url)
+    .then((res) => (activeLocations.value = res))
     .catch((err) => console.error(err))
+    .finally(() => (loadingActiveLocations.value = false))
+}
+
+function getCountActiveLocations() {
+  fetcher
+    .get('/activeLocations/count/getAll')
+    .then((res) => (countActiveLocations.value = res))
+    .catch((err) => console.error(err))
+}
+
+function updateData() {
+  getActiveLocations()
+  getCountActiveLocations()
+}
+
+onMounted(() => {
+  updateData()
 })
 </script>
 <template>
   <div>
     <h1 align="center">Активные локации</h1>
-    <div v-if="locations" class="locations">
-      <div v-for="location in locations" :key="location.id" class="location">
-        <div class="title">
-          <div class="path">
-            {{ location.area.region.name }} -> {{ location.area.name }} ->
-            <router-link :to="{ name: 'Location', params: { id: location.id } }">{{
-              location.name
-            }}</router-link>
+    <CommonLoading v-if="!activeLocations" />
+    <div v-else>
+      <CommonPagination
+        v-if="countActiveLocations"
+        :count="parseInt(countActiveLocations)"
+        @get-data="getActiveLocations"
+      />
+      <div v-if="activeLocations" class="activeLocations">
+        <div
+          v-for="activeLocation in activeLocations"
+          :key="activeLocation.id"
+          class="activeLocation"
+        >
+          <div class="title">
+            <div class="path">
+              {{ activeLocation.location.area.region.name }} ->
+              {{ activeLocation.location.area.name }} ->
+              <CommonLink :to="{ name: 'Location', params: { id: activeLocation.location.id } }">{{
+                activeLocation.location.name
+              }}</CommonLink>
+            </div>
           </div>
-          <div class="post-id">
-            {{ location.posts[0].id }}
-            {{ new Date(location.posts[0].createdAt).getMilliseconds() }}ms
+          <div class="post-info">
+            <div class="post" v-html="activeLocation.post.text"></div>
+            <div class="info">
+              <CommonLink
+                :to="{
+                  name: 'Characters',
+                  params: { nickname: activeLocation.post.character.user.nickname }
+                }"
+                >{{ activeLocation.post.character.user.nickname }}</CommonLink
+              >
+              ->
+              <CommonLink
+                :to="{ name: 'Character', params: { id: activeLocation.post.character.id } }"
+                >{{ activeLocation.post.character.name }}</CommonLink
+              >
+            </div>
           </div>
+          <hr />
         </div>
-        <div class="post-info">
-          <div class="post">{{ location.posts[0].text }}</div>
-          <div class="info">
-            <router-link
-              :to="{
-                name: 'Characters',
-                params: { nickname: location.posts[0].character.user.nickname }
-              }"
-              >{{ location.posts[0].character.user.nickname }}</router-link
-            >
-            ->
-            <router-link
-              :to="{ name: 'Character', params: { id: location.posts[0].character.id } }"
-              >{{ location.posts[0].character.name }}</router-link
-            >
-          </div>
-        </div>
-        <hr />
       </div>
+      <div v-else>Активных тем не найдено</div>
     </div>
-    <div v-else>Активных тем не найдено</div>
   </div>
 </template>
 <style scoped src="./style.css"></style>

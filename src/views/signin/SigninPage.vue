@@ -3,6 +3,8 @@ import Fetcher from '@/Fetcher'
 import { ref } from 'vue'
 import { userStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
+import CommonBtn from '@/ui-kit/btn/CommonBtn.vue'
+
 const user = userStore()
 const router = useRouter()
 const login = ref('')
@@ -37,7 +39,7 @@ function send() {
         <input class="form-group-input" id="mono-gatari-password" type="password" v-model="login" />
       </div>
       <div class="btns">
-        <button type="submit" class="send">Войти</button>
+        <CommonBtn type="submit">Войти</CommonBtn>
       </div>
     </div>
   </form>

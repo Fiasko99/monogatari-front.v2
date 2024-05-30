@@ -1,5 +1,6 @@
 <script setup>
 import { useRouter } from 'vue-router'
+import CommonBtn from '@/ui-kit/btn/CommonBtn.vue'
 const router = useRouter()
 
 const props = defineProps({
@@ -21,8 +22,8 @@ function openPage() {
     <div class="modal">
       <div class="slot">
         <div class="btns">
-          <button @click="closeModal" class="btn">Закрыть модалку</button>
-          <button @click="openPage" class="btn">Открыть страницу</button>
+          <CommonBtn @click="closeModal">Закрыть модалку</CommonBtn>
+          <CommonBtn @click="openPage">Открыть страницу</CommonBtn>
         </div>
         <router-view />
       </div>

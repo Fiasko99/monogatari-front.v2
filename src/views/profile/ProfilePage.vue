@@ -1,8 +1,10 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute } from 'vue-router'
-import { RouterView, RouterLink } from 'vue-router'
+import { RouterView } from 'vue-router'
 import Fetcher from '@/Fetcher'
+import CommonLink from '@/ui-kit/link/CommonLink.vue'
+
 const route = useRoute()
 const user = ref()
 const fetcher = Fetcher()
@@ -19,11 +21,14 @@ onMounted(() => {
 <template>
   <div v-if="user">
     <div class="profile-navigation">
-      <router-link :to="{ name: 'Characters', params: { nickname: route.params.nickname } }"
-        >Персонажи</router-link
+      <CommonLink :to="{ name: 'Characters', params: { nickname: route.params.nickname } }"
+        >Персонажи</CommonLink
       >
-      <router-link :to="{ name: 'Settings', params: { nickname: route.params.nickname } }"
-        >Настройки</router-link
+      <CommonLink :to="{ name: 'Settings', params: { nickname: route.params.nickname } }"
+        >Настройки</CommonLink
+      >
+      <CommonLink :to="{ name: 'Logout', params: { nickname: route.params.nickname } }" class="link"
+        >Выйти</CommonLink
       >
     </div>
     <hr />

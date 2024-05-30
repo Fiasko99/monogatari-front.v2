@@ -1,14 +1,15 @@
 <script setup>
-import { RouterView, RouterLink } from 'vue-router'
+import { RouterView } from 'vue-router'
+import CommonLink from '@/ui-kit/link/CommonLink.vue'
 </script>
 <template>
   <div>
     <div class="main-navigation">
-      <router-link class="link" :to="{ name: 'Home' }">Мир</router-link>
-      <router-link class="link" :to="{ name: 'Active' }">Активные темы</router-link>
-      <router-link class="link" :to="{ name: 'Rules' }">Правила</router-link>
-      <router-link class="link" :to="{ name: 'History' }">История мира</router-link>
-      <router-link class="link" :to="{ name: 'Events' }">События</router-link>
+      <CommonLink :to="{ name: 'Home' }">Мир</CommonLink>
+      <CommonLink :to="{ name: 'Active' }">Активные темы</CommonLink>
+      <CommonLink :to="{ name: 'Rules' }">Правила</CommonLink>
+      <CommonLink :to="{ name: 'History' }">История мира</CommonLink>
+      <CommonLink :to="{ name: 'Events' }">События</CommonLink>
     </div>
     <hr />
     <router-view />

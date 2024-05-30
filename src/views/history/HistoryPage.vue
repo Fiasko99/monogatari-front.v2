@@ -1,7 +1,6 @@
 <script setup>
 import Fetcher from '@/Fetcher'
 import { onMounted, ref } from 'vue'
-import ModalBtn from '@/components/btn/ModalBtn.vue'
 
 const fetcher = Fetcher('richHtml')
 
@@ -15,7 +14,6 @@ onMounted(() => {
 </script>
 <template>
   <div>
-    <modal-btn view="Home">Модалка</modal-btn>
     <h1 align="center">История мира</h1>
     <div v-if="history" class="history">
       <div v-for="{ key, title, content } in history" :key="key" class="chapter">

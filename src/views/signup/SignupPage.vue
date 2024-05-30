@@ -3,6 +3,8 @@ import Fetcher from '@/Fetcher'
 import { ref } from 'vue'
 import { userStore } from '@/stores/user'
 import { useRouter } from 'vue-router'
+import CommonBtn from '@/ui-kit/btn/CommonBtn.vue'
+
 const user = userStore()
 const router = useRouter()
 const fetcher = Fetcher()
@@ -50,7 +52,7 @@ function send() {
         <input class="form-group-input" id="mono-gatari-email" type="text" v-model="email" />
       </div>
       <div class="btns">
-        <button type="submit" class="send">Отправить</button>
+        <CommonBtn type="submit">Отправить</CommonBtn>
       </div>
     </div>
   </form>

@@ -3,6 +3,8 @@ import Fetcher from '@/Fetcher'
 import { userStore } from '@/stores/user'
 import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import CommonBtn from '@/ui-kit/btn/CommonBtn.vue'
+import CommonLink from '@/ui-kit/link/CommonLink.vue'
 
 defineProps({
   characters: Array
@@ -40,13 +42,13 @@ function activateCharacter(characterId) {
   <div v-if="characters.length > 0">
     <div class="title">
       <h1>Персонажи</h1>
-      <button
+      <CommonBtn
         v-if="route.params.nickname === user.data.nickname"
         @click="changeAddNewCharacter"
         class="add-new-character"
       >
         +
-      </button>
+      </CommonBtn>
     </div>
     <div v-if="addNewCharacter" class="form-new-character">
       <div class="form-group">
@@ -59,22 +61,22 @@ function activateCharacter(characterId) {
         />
       </div>
       <div class="btns">
-        <button @click="createNewCharacter" class="create">Создать</button>
+        <CommonBtn @click="createNewCharacter" class="create">Создать</CommonBtn>
       </div>
     </div>
     <div class="characters">
       <div class="character" v-for="character of characters" :key="character.id">
-        <router-link :to="{ name: 'Character', params: { id: character.id } }" class="name">{{
+        <CommonLink :to="{ name: 'Character', params: { id: character.id } }" class="name">{{
           character.name
-        }}</router-link>
+        }}</CommonLink>
         <div>{{ new Date(character.createdAt).getMilliseconds() }}ms</div>
-        <button
+        <CommonBtn
           :disabled="character.active"
           @click="activateCharacter(character.id)"
           class="active"
         >
           {{ character.active ? 'Активен' : 'Неактивен' }}
-        </button>
+        </CommonBtn>
       </div>
     </div>
   </div>

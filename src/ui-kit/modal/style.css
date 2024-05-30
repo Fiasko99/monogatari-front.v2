@@ -15,18 +15,6 @@
     display: flex;
     justify-content: flex-end;
     gap: 8px;
-
-    .btn {
-      background: var(--mainColor);
-      border: none;
-      cursor: pointer;
-      border-radius: 2px;
-      padding: 6px 12px;
-
-      &:hover {
-        background: wheat;
-      }
-    }
   }
 
   .slot {

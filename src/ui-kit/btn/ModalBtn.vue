@@ -1,5 +1,6 @@
 <script setup>
 import { useRouter, useRoute } from 'vue-router'
+import CommonBtn from './CommonBtn.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -24,7 +25,7 @@ function openModal() {
     path: '',
     name: 'Modal' + route.name,
     props: { view: props.view, previousView: route.name },
-    component: () => import('@/components/modal/ModalView.vue'),
+    component: () => import('@/ui-kit/modal/ModalView.vue'),
     children: [
       {
         path: viewRoute.path,
@@ -38,9 +39,9 @@ function openModal() {
 }
 </script>
 <template>
-  <button @click="openModal">
+  <CommonBtn @click="openModal">
     <slot></slot>
-  </button>
+  </CommonBtn>
   <router-view />
 </template>
 <style scoped></style>

@@ -1,8 +1,9 @@
 <script setup>
-import { RouterView, RouterLink } from 'vue-router'
 import { onMounted } from 'vue'
 import { useRouter } from 'vue-router'
 import { userStore } from '@/stores/user'
+import CommonLink from '@/ui-kit/link/CommonLink.vue'
+
 const router = useRouter()
 const user = userStore()
 onMounted(() => {
@@ -14,8 +15,8 @@ onMounted(() => {
 <template>
   <div>
     <div class="auth-navigation">
-      <router-link class="link" :to="{ name: 'Signin' }">Войти</router-link>
-      <router-link class="link" :to="{ name: 'Signup' }">Регистрация</router-link>
+      <CommonLink class="link" :to="{ name: 'Signin' }">Войти</CommonLink>
+      <CommonLink class="link" :to="{ name: 'Signup' }">Регистрация</CommonLink>
     </div>
     <hr />
     <router-view />

@@ -1,0 +1,35 @@
+.posts {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  .post {
+    background: gray;
+    padding: 12px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+
+    .top {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--secondary);
+    }
+
+    .post-info {
+      margin-top: 4px;
+      display: flex;
+      gap: 8px;
+
+      .character {
+        min-width: 100px;
+        border-right: 1px solid #000;
+      }
+
+      .text {
+        word-break: break-word;
+      }
+    }
+  }
+}

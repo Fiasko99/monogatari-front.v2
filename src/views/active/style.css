@@ -1,16 +1,18 @@
+.activeLocations {
+  margin-top: 12px;
+}
+
 .post-info {
   display: flex;
   flex-wrap: nowrap;
+  justify-content: space-between;
   gap: 8px;
 
   .post {
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
-  }
-
-  .info {
-    width: 10%;
+    width: 70%;
   }
 }

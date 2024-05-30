@@ -1,0 +1,15 @@
+.locations {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .location {
+    flex-basis: 45%;
+    flex-grow: 1;
+    border-radius: 6px;
+
+    .title {
+      text-align: center;
+    }
+  }
+}

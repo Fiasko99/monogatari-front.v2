@@ -2,13 +2,4 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-
-  .link {
-    color: var(--mainColor);
-    text-decoration: none;
-
-    &:hover {
-      color: wheat;
-    }
-  }
 }
