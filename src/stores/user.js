@@ -26,7 +26,7 @@ export const userStore = defineStore('user', {
       this.user = data
       Object.keys(data).length > 0 && this.fieldCharacter()
     },
-    async fieldCharacter() {
+    fieldCharacter() {
       const fetcher = Fetcher()
       fetcher
         .get(`/character/active/user/${this.user.nickname}`)
