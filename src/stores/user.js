@@ -31,7 +31,7 @@ export const userStore = defineStore('user', {
       fetcher
         .get(`/character/active/user/${this.user.nickname}`)
         .then((res) => (this.character = res))
-        .catch((err) => console.log(err))
+        .catch((err) => console.error(err))
     }
   }
 })

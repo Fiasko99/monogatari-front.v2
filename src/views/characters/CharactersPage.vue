@@ -41,7 +41,7 @@ function selectAvatar(e) {
     loadAvatar.value = false
   }
   reader.onerror = function (error) {
-    console.log('Error: ', error)
+    console.error('Error: ', error)
   }
   reader.readAsDataURL(file)
 }
@@ -75,7 +75,7 @@ function updateData() {
   fetcher
     .get(`/character/user/${nickname}`)
     .then((res) => (characters.value = res))
-    .catch((err) => console.log(err))
+    .catch((err) => console.error(err))
 }
 
 onMounted(() => {
