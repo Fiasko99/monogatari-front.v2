@@ -8,7 +8,7 @@
     background: gray;
     flex-basis: 45%;
     flex-grow: 1;
-    padding: 6px 12px;
+    padding: 6px;
     border-radius: 8px;
 
     & > .title {

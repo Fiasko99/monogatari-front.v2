@@ -1,10 +1,10 @@
 <script setup>
-import Fetcher from '@/Fetcher'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import CommonLink from '@/ui-kit/link/CommonLink.vue'
 import CommonLoading from '@/ui-kit/loading/CommonLoading.vue'
 import CommonPagination from '@/ui-kit/pagination/CommonPagination.vue'
+import Fetcher from '@/Fetcher'
+import DemoPosts from './components/demo-posts/ActiveLocations.vue'
 
 const route = useRoute()
 
@@ -56,41 +56,7 @@ onMounted(() => {
         :count="parseInt(countActiveLocations)"
         @get-data="getActiveLocations"
       />
-      <div v-if="activeLocations" class="activeLocations">
-        <div
-          v-for="activeLocation in activeLocations"
-          :key="activeLocation.id"
-          class="activeLocation"
-        >
-          <div class="title">
-            <div class="path">
-              {{ activeLocation.location.area.region.name }} ->
-              {{ activeLocation.location.area.name }} ->
-              <CommonLink :to="{ name: 'Location', params: { id: activeLocation.location.id } }">{{
-                activeLocation.location.name
-              }}</CommonLink>
-            </div>
-          </div>
-          <div class="post-info">
-            <div class="post" v-html="activeLocation.post.text"></div>
-            <div class="info">
-              <CommonLink
-                :to="{
-                  name: 'Characters',
-                  params: { nickname: activeLocation.post.character.user.nickname }
-                }"
-                >{{ activeLocation.post.character.user.nickname }}</CommonLink
-              >
-              ->
-              <CommonLink
-                :to="{ name: 'Character', params: { id: activeLocation.post.character.id } }"
-                >{{ activeLocation.post.character.name }}</CommonLink
-              >
-            </div>
-          </div>
-          <hr />
-        </div>
-      </div>
+      <DemoPosts v-if="activeLocations" :activeLocations="activeLocations" />
       <div v-else>Активных тем не найдено</div>
     </div>
   </div>

@@ -1,0 +1,48 @@
+.post {
+  background: gray;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  .top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: dimgray;
+    padding: 6px;
+  }
+
+  .post-info {
+    margin-top: 4px;
+    padding: 6px;
+    display: flex;
+    gap: 8px;
+
+    .character {
+      width: 12em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .text {
+      word-break: break-word;
+      line-height: 24px;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.4px;
+    }
+  }
+}
+
+.imageWrapper {
+  background-color: rgba(105, 105, 105, 0.5);
+  border-radius: 8px;
+  height: 256px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}

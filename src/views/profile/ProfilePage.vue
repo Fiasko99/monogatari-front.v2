@@ -37,7 +37,7 @@ onMounted(() => {
       <div class="email">Почта {{ user.email }}</div>
     </div>
     <hr />
-    <router-view :characters="user.characters" @updateData="updateData" />
+    <router-view />
   </div>
 </template>
 <style scoped src="./style.css"></style>

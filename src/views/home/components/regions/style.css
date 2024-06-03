@@ -1,14 +1,14 @@
-.kingdoms {
+.regions {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 16px;
 
-  .kingdom {
+  .region {
     background: dimgray;
     flex-basis: 45%;
     flex-grow: 1;
-    padding: 8px 16px;
+    padding: 8px;
     border-radius: 12px;
 
     & > .title {

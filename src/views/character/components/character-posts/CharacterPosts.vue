@@ -1,6 +1,6 @@
 <script setup>
 import { defineProps } from 'vue'
-import PostComponent from '@/components/post/PostComponent.vue'
+import DemoPost from '@/components/demo-post/DemoPost.vue'
 
 defineProps({
   posts: {
@@ -12,13 +12,7 @@ defineProps({
 
 <template>
   <div class="posts">
-    <PostComponent
-      v-for="post in posts"
-      :key="post.id"
-      :post="post"
-      :user="post.character.user"
-      :character="post.character"
-    />
+    <DemoPost v-for="post in posts" :key="post.id" :post="post" :location="post.location" />
   </div>
 </template>
 <style scoped src="./style.css"></style>

@@ -3,9 +3,9 @@ import Fetcher from '@/Fetcher'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import CommonPagination from '@/ui-kit/pagination/CommonPagination.vue'
+import CommonLoading from '@/ui-kit/loading/CommonLoading.vue'
 import CreatePost from './components/create-post/CreatePostComponent.vue'
 import PostsComponent from './components/posts/PostsComponent.vue'
-import CommonLoading from '@/ui-kit/loading/CommonLoading.vue'
 
 const route = useRoute()
 const fetcher = Fetcher()

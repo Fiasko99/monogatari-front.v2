@@ -1,26 +1,26 @@
 <script setup>
 import Fetcher from '@/Fetcher'
 import { onMounted, ref } from 'vue'
-import Kingdoms from './components/kingdoms/KingdomsComponent.vue'
+import RegionsComponent from './components/regions/RegionsComponent.vue'
 import CommonLoading from '@/ui-kit/loading/CommonLoading.vue'
 
 const fetcher = Fetcher()
-const kingdoms = ref()
-const loadKingdoms = ref(false)
+const regions = ref()
+const loadRegions = ref(false)
 
 onMounted(() => {
-  loadKingdoms.value = true
+  loadRegions.value = true
   fetcher
     .get('/region/all')
-    .then((res) => (kingdoms.value = res))
+    .then((res) => (regions.value = res))
     .catch((err) => console.error(err))
-    .finally(() => (loadKingdoms.value = false))
+    .finally(() => (loadRegions.value = false))
 })
 </script>
 <template>
-  <CommonLoading v-if="loadKingdoms" />
+  <CommonLoading v-if="loadRegions" />
   <div class="map" v-else>
-    <Kingdoms :kingdoms="kingdoms" />
+    <RegionsComponent :regions="regions" />
   </div>
 </template>
 <style scoped src="./style.css"></style>

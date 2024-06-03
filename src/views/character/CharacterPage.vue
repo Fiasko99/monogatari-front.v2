@@ -2,9 +2,9 @@
 import Fetcher from '@/Fetcher'
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
-import CommonLink from '@/ui-kit/link/CommonLink.vue'
 import CommonPagination from '@/ui-kit/pagination/CommonPagination.vue'
 import CommonLoading from '@/ui-kit/loading/CommonLoading.vue'
+import CharacterPosts from './components/character-posts/CharacterPosts.vue'
 
 const route = useRoute()
 const fetcher = Fetcher()
@@ -73,19 +73,7 @@ onMounted(() => {
     />
     <CommonLoading v-if="loadingCharacterPosts" />
     <div>
-      <div v-if="characterPosts" class="posts">
-        <div class="post" v-for="post in characterPosts" :key="post.id">
-          <div class="title">
-            <div class="location">
-              {{ post.location.area.region.name }} -> {{ post.location.area.name }} ->
-              <CommonLink :to="{ name: 'Location', params: { id: post.location.id } }">{{
-                post.location.name
-              }}</CommonLink>
-            </div>
-          </div>
-          <div class="text" v-html="post.text"></div>
-        </div>
-      </div>
+      <CharacterPosts v-if="characterPosts" :posts="characterPosts" />
       <div v-else>У персонажа нет постов</div>
     </div>
   </div>

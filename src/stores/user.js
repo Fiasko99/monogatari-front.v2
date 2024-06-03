@@ -1,3 +1,4 @@
+import Fetcher from '@/Fetcher'
 import { defineStore } from 'pinia'
 
 export const userStore = defineStore('user', {
@@ -23,18 +24,14 @@ export const userStore = defineStore('user', {
   actions: {
     fieldUser(data = {}) {
       this.user = data
-      if (data.characters) {
-        this.user.characters.forEach((character) => {
-          this.fieldCharacter(character)
-        })
-      } else {
-        this.character = {}
-      }
+      Object.keys(data).length > 0 && this.fieldCharacter()
     },
-    fieldCharacter(data = {}) {
-      if (data.active) {
-        this.character = data
-      }
+    fieldCharacter() {
+      const fetcher = Fetcher()
+      fetcher
+        .get(`/character/active/user/${this.user.nickname}`)
+        .then((res) => (this.character = res))
+        .catch((err) => console.log(err))
     }
   }
 })

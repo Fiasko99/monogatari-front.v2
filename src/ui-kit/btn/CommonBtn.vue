@@ -8,7 +8,7 @@
 
 <style scoped>
 .btn {
-  background: var(--primary);
+  background-color: var(--primary);
   color: var(--text);
   padding: 6px 12px;
   font-weight: bold;
@@ -18,7 +18,11 @@
   cursor: pointer;
 
   &:hover {
-    background: var(--accent);
+    background-color: var(--accent);
+  }
+
+  &:disabled {
+    background-color: var(--primary);
   }
 }
 </style>
