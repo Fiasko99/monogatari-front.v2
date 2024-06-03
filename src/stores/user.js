@@ -1,5 +1,5 @@
-import Fetcher from '@/Fetcher'
 import { defineStore } from 'pinia'
+import Fetcher from '@/Fetcher'
 
 export const userStore = defineStore('user', {
   state: () => ({
@@ -26,7 +26,7 @@ export const userStore = defineStore('user', {
       this.user = data
       Object.keys(data).length > 0 && this.fieldCharacter()
     },
-    fieldCharacter() {
+    async fieldCharacter() {
       const fetcher = Fetcher()
       fetcher
         .get(`/character/active/user/${this.user.nickname}`)

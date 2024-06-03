@@ -119,9 +119,9 @@ onMounted(() => {
     </div>
     <div class="characters" v-if="characters">
       <div
-        :class="['character', character.active && 'active']"
-        v-for="character of characters"
-        :key="character.id"
+      v-for="character of characters"
+      :class="['character', character.active && 'active']"
+      :key="character.id"
       >
         <ThirdHeading>
           <CommonLink :to="{ name: 'Character', params: { id: character.id } }" class="name">{{
