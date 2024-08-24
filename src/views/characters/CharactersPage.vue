@@ -1,7 +1,7 @@
 <script setup>
 import Fetcher from '@/Fetcher'
 import { userStore } from '@/stores/user'
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
 import CommonBtn from '@/ui-kit/btn/CommonBtn.vue'
 import CommonLink from '@/ui-kit/link/CommonLink.vue'
@@ -19,11 +19,7 @@ const loadAvatar = ref(false)
 let avatarNewCharacter = ''
 
 const nickname = route.params.nickname
-const selfProfile = nickname === user.data.nickname
-
-function returnDefaul(e) {
-  e.target.src = `${import.meta.env.VITE_APP_CDN_URL}/default/characterAvatar.svg`
-}
+const selfProfile = computed(() => nickname === user.data.nickname)
 
 function changeAddNewCharacter() {
   addNewCharacter.value = !addNewCharacter.value
