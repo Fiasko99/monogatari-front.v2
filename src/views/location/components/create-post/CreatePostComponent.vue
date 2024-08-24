@@ -11,12 +11,11 @@ const user = userStore()
 const fetcher = Fetcher()
 const postText = ref('')
 const isShowPostForm = ref(false)
-const activeCharacter = user.activeCharacter
 
 function sendPost() {
   const data = {
     text: postText.value.innerHTML,
-    characterId: activeCharacter.id,
+    characterId: user.activeCharacter.id,
     locationId: route.params.id
   }
   fetcher
@@ -42,7 +41,7 @@ function showCreatePost() {
 </script>
 
 <template>
-  <div v-if="activeCharacter" class="create-post">
+  <div v-if="user.activeCharacter" class="create-post">
     <CommonBtn @click="showCreatePost">Написать пост</CommonBtn>
     <div v-if="isShowPostForm" class="post-form">
       <div class="style-btns">
