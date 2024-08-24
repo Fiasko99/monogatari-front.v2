@@ -1,30 +1,40 @@
 .post {
-  background: gray;
+  position: relative;
+  background: var(--secondary);
   border-radius: 12px;
-  overflow: hidden;
+  overflow: clip;
   display: flex;
   flex-direction: column;
+  gap: 6px;
+  box-shadow: 2px 2px 4px 4px var(--background);
 
   .top {
+    position: sticky;
+    top: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    background: dimgray;
+    justify-content: end;
+    background: var(--secondary);
     padding: 6px;
+    height: 24px;
+    z-index: 1;
+    box-shadow: 2px 2px 4px 4px var(--background);
   }
 
   .post-info {
-    margin-top: 4px;
     padding: 6px;
     display: flex;
     gap: 8px;
 
     .character {
+      position: sticky;
+      top: 42px;
       width: 12em;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 4px;
+      height: 100%;
     }
 
     .text {
@@ -45,4 +55,5 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
+  box-shadow: 2px 2px 4px 4px var(--background);
 }

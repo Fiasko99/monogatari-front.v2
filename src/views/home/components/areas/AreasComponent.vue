@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from 'vue'
 import Locations from '../locations/LocationsComponent.vue'
 import SecondHeading from '@/ui-kit/heading/SecondHeading.vue'
 

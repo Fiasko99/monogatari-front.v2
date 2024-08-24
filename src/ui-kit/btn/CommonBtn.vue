@@ -23,6 +23,8 @@
 
   &:disabled {
     background-color: var(--primary);
+    cursor: default;
+    opacity: .8;
   }
 }
 </style>

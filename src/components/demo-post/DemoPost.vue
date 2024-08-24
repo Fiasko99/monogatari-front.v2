@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from 'vue'
 import CommonLink from '@/ui-kit/link/CommonLink.vue'
 
 defineProps({

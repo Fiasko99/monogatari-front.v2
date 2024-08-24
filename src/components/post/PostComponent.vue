@@ -1,7 +1,5 @@
 <script setup>
-import { defineProps } from 'vue'
 import CommonLink from '@/ui-kit/link/CommonLink.vue'
-import ThirdHeading from '@/ui-kit/heading/ThirdHeading.vue'
 
 defineProps({
   post: {
@@ -68,25 +66,18 @@ function getTime(time) {
 <template>
   <div class="post">
     <div class="top">
-      <div class="user">
-        <ThirdHeading>
-          <CommonLink :to="{ name: 'Characters', params: { nickname: user.nickname } }">{{
-            user.nickname
-          }}</CommonLink>
-        </ThirdHeading>
-      </div>
       <div class="info" :title="new Date(post.createdAt)">
         <span>{{ getTime(post.createdAt) }}</span>
       </div>
     </div>
     <div class="post-info">
       <div class="character">
-        <div class="imageWrapper">
-          <img class="image" :src="character.avatar" @error="returnDefaul" alt="" />
-        </div>
         <CommonLink class="name" :to="{ name: 'Character', params: { id: character.id } }">{{
           character.name
         }}</CommonLink>
+        <div class="imageWrapper">
+          <img class="image" :src="character.avatar" @error="returnDefaul" alt="" />
+        </div>
       </div>
       <div v-html="post.text" class="text"></div>
     </div>

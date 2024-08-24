@@ -1,5 +1,5 @@
 <script setup>
-import { ref, defineEmits } from 'vue'
+import { ref } from 'vue'
 import { userStore } from '@/stores/user'
 import { useRoute } from 'vue-router'
 import Fetcher from '@/Fetcher'
@@ -33,7 +33,7 @@ function applyFormatterText(type, tag = null) {
 function paste(e) {
   e.preventDefault()
   var text = (e.originalEvent || e).clipboardData.getData('text/plain')
-  document.execCommand('paste', false, text)
+  document.execCommand('insertHTML', false, text)
 }
 
 function showCreatePost() {

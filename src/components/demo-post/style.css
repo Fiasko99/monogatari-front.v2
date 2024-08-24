@@ -1,16 +1,18 @@
 .post {
-  background: gray;
   border-radius: 12px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  background: var(--secondary);
+  box-shadow: 2px 2px 4px 4px var(--background);
 
   .top {
     display: flex;
     justify-content: space-between;
     align-items: start;
     padding: 6px;
-    background: dimgray;
+    background: var(--secondary);
+    box-shadow: 2px 2px 4px 4px var(--background);
   }
 
   .post-info {

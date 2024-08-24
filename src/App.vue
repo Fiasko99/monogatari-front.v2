@@ -15,7 +15,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="themeDark">
+  <div data-theme="dark">
     <header class="header">
       <nav class="navigation">
         <div class="nav-left">

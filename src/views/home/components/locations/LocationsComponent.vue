@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from 'vue'
 import ThirdHeading from '@/ui-kit/heading/ThirdHeading.vue'
 import CommonLink from '@/ui-kit/link/CommonLink.vue'
 

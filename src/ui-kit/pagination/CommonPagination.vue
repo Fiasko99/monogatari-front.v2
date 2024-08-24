@@ -1,5 +1,5 @@
 <script setup>
-import { defineEmits, defineProps, ref, onMounted, computed } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import CommonBtn from '@/ui-kit/btn/CommonBtn.vue'
 import TooltipComponent from '@/ui-kit/tooltip/TooltipComponent.vue'
@@ -78,44 +78,26 @@ onMounted(() => {
 
 <template>
   <div class="pagination">
-    <CommonBtn :class="currentPage === 1 && 'hideArrow'" @click="changePage(currentPage - 1)">
+    <CommonBtn :disabled="currentPage === 1" @click="changePage(currentPage - 1)">
       &larr;
     </CommonBtn>
-    <CommonBtn v-if="currentPage - 3 > 0" @click="changePage(1)">1</CommonBtn>
-    <div v-if="currentPage - 3 > 1" id="first">
-      <CommonBtn @click="openTooltip('#first')"> ... </CommonBtn>
+    <CommonBtn :disabled="currentPage === 1" @click="changePage(1)">1</CommonBtn>
+    <div id="currentPage">
+      <CommonBtn @click="openTooltip('#currentPage')"> {{ currentPage }} </CommonBtn>
     </div>
-    <CommonBtn v-if="currentPage - 2 > 0" @click="changePage(currentPage - 2)">
-      {{ currentPage - 2 }}
-    </CommonBtn>
-    <CommonBtn v-if="currentPage - 1 > 0" @click="changePage(currentPage - 1)">
-      {{ currentPage - 1 }}
-    </CommonBtn>
-    <CommonBtn>
-      {{ currentPage }}
-    </CommonBtn>
-    <CommonBtn v-if="currentPage + 1 <= getCountPages" @click="changePage(currentPage + 1)">
-      {{ currentPage + 1 }}
-    </CommonBtn>
-    <CommonBtn v-if="currentPage + 2 <= getCountPages" @click="changePage(currentPage + 2)">
-      {{ currentPage + 2 }}
-    </CommonBtn>
-    <div v-if="currentPage + 3 < getCountPages" id="last">
-      <CommonBtn @click="openTooltip('#last')"> ... </CommonBtn>
-    </div>
-    <CommonBtn v-if="currentPage + 2 < getCountPages" @click="changePage(getCountPages)">
+    <CommonBtn :disabled="currentPage === getCountPages" @click="changePage(getCountPages)">
       {{ getCountPages }}
     </CommonBtn>
     <CommonBtn
-      :class="currentPage === getCountPages && 'hideArrow'"
+      :disabled="currentPage === getCountPages"
       @click="changePage(currentPage + 1)"
     >
       &rarr;
     </CommonBtn>
-    <select @change="changeShowPostsCount" v-model="showPostsCount">
-      <option value="10">10</option>
-      <option value="20">20</option>
-      <option value="50">50</option>
+    <select @change="changeShowPostsCount" v-model="showPostsCount" class="select">
+      <option class="option" value="10">10</option>
+      <option class="option" value="20">20</option>
+      <option class="option" value="50">50</option>
     </select>
     <TooltipComponent v-if="showTooltipForElemId" :to="showTooltipForElemId">
       <input type="number" v-model="toPage" />

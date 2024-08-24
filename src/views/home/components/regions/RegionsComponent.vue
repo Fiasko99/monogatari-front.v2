@@ -1,5 +1,4 @@
 <script setup>
-import { defineProps } from 'vue'
 import Areas from '../areas/AreasComponent.vue'
 import FirstHeading from '@/ui-kit/heading/FirstHeading.vue'
 

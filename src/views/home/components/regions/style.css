@@ -5,11 +5,12 @@
   gap: 16px;
 
   .region {
-    background: dimgray;
+    background: var(--secondary);
     flex-basis: 45%;
     flex-grow: 1;
     padding: 8px;
     border-radius: 12px;
+    box-shadow: 2px 2px 4px 4px var(--background);
 
     & > .title {
       margin: 6px 0;

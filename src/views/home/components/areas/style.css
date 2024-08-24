@@ -5,12 +5,13 @@
   gap: 12px;
 
   .area {
-    background: gray;
+    background: var(--secondary);
     flex-basis: 45%;
     flex-grow: 1;
     padding: 6px;
     border-radius: 8px;
-
+    box-shadow: 2px 2px 4px 4px var(--background);
+    
     & > .title {
       margin: 6px 0;
       font-weight: bold;
