@@ -5,6 +5,7 @@ import { useRoute } from 'vue-router'
 import CommonPagination from '@/ui-kit/pagination/CommonPagination.vue'
 import CommonLoading from '@/ui-kit/loading/CommonLoading.vue'
 import CharacterPosts from './components/character-posts/CharacterPosts.vue'
+import CommonLink from '@/ui-kit/link/CommonLink.vue'
 
 const route = useRoute()
 const fetcher = Fetcher()
@@ -62,8 +63,12 @@ onMounted(() => {
   <div v-if="character">
     <h1 align="center">Персонаж</h1>
     <div class="character">
-      <div class="name">{{ character.name }}</div>
-      <div>{{ character.active ? 'Активен' : 'Неактивен' }}</div>
+      <div>
+        Автор персонажа: 
+        <CommonLink :to="{ name: 'Characters', params: { nickname: character.user.nickname } }">{{ character.user.nickname }}</CommonLink>
+      </div>
+      <div class="name">Имя персонажа: {{ character.name }}</div>
+      <div>Статус: {{ character.active ? 'Активен' : 'Неактивен' }}</div>
     </div>
     <hr />
     <CommonPagination

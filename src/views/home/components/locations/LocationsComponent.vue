@@ -16,6 +16,6 @@ defineProps({
       </third-heading>
     </div>
   </div>
-  <div v-else class="locations">В области нет локаций</div>
+  <div v-else>В области нет локаций</div>
 </template>
 <style scoped src="./style.css"></style>

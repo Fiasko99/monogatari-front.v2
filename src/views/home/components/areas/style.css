@@ -1,19 +1,17 @@
 .areas {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 6px;
+  padding: 6px;
 
   .area {
     background: var(--secondary);
-    flex-basis: 45%;
-    flex-grow: 1;
     padding: 6px;
     border-radius: 8px;
     box-shadow: 2px 2px 4px 4px var(--background);
     
     & > .title {
-      margin: 6px 0;
+      margin: 4px 0;
       font-weight: bold;
       font-size: 24px;
       text-align: center;

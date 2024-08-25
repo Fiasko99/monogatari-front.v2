@@ -2,13 +2,13 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
+  gap: 6px;
 
   .region {
     background: var(--secondary);
     flex-basis: 45%;
     flex-grow: 1;
-    padding: 8px;
+    padding: 6px;
     border-radius: 12px;
     box-shadow: 2px 2px 4px 4px var(--background);
 
