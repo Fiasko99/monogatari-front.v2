@@ -1,4 +1,5 @@
 <script setup>
+import FirstHeading from '@/ui-kit/heading/FirstHeading.vue';
 import Fetcher from '@/Fetcher'
 import { onMounted, ref } from 'vue'
 
@@ -14,7 +15,7 @@ onMounted(() => {
 </script>
 <template>
   <div>
-    <h1 align="center">История мира</h1>
+    <first-heading center>История мира</first-heading>
     <div v-if="history" class="history">
       <div v-for="{ key, title, content } in history" :key="key" class="chapter">
         <component :is="title.tag" v-bind="title.attributes">{{ title.text }}</component>

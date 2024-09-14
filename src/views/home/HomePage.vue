@@ -18,7 +18,7 @@ onMounted(() => {
 })
 </script>
 <template>
-  <CommonLoading v-if="loadRegions" />
+  <CommonLoading full-page v-if="loadRegions" />
   <div class="map" v-else>
     <RegionsComponent :regions="regions" />
   </div>

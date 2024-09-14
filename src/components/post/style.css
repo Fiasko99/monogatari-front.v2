@@ -29,7 +29,9 @@
     .character {
       position: sticky;
       top: 42px;
-      width: 12em;
+      min-width: 128px;
+      width: 20%;
+      max-width: 256px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -38,6 +40,7 @@
     }
 
     .text {
+      width: 80%;
       word-break: break-word;
       line-height: 24px;
       font-size: 16px;
@@ -49,7 +52,7 @@
 
 .imageWrapper {
   border-radius: 8px;
-  height: 256px;
+  height: 100%;
   width: 100%;
   overflow: hidden;
   display: flex;

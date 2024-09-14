@@ -9,10 +9,10 @@
 <style scoped>
 .link {
   text-decoration: none;
-  color: var(--primary);
+  color: var(--link);
 
   &:hover {
-    color: var(--accent);
+    color: var(--link-active);
   }
 }
 </style>

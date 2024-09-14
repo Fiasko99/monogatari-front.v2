@@ -1,8 +1,30 @@
 :root {
   --text: rgb(253, 248, 247);
+  --link: rgb(127, 196, 252);
+  --link-active: rgb(36, 156, 255);
+  --background-1: rgb(13, 12, 12, .1);
+  --background-3: rgb(13, 12, 12, .3);
+  --background-5: rgb(13, 12, 12, .5);
+  --background-7: rgb(13, 12, 12, .7);
   --background: rgb(13, 12, 12);
+  --primary-1: rgb(250, 126, 95, .1);
+  --primary-3: rgb(250, 126, 95, .3);
+  --primary-5: rgb(250, 126, 95, .5);
+  --primary-7: rgb(250, 126, 95, .7);
   --primary: rgb(250, 126, 95);
+  --secondary-1: rgb(39, 37, 37, .1);
+  --secondary-3: rgb(39, 37, 37, .3);
+  --secondary-5: rgb(39, 37, 37, .5);
+  --secondary-7: rgb(39, 37, 37, .7);
+  --secondary-1: rgb(39, 37, 37, .1);
+  --secondary-3: rgb(39, 37, 37, .3);
+  --secondary-5: rgb(39, 37, 37, .5);
+  --secondary-7: rgb(39, 37, 37, .7);
   --secondary: rgb(39, 37, 37);
+  --accent-1: rgb(252, 83, 45, .1);
+  --accent-3: rgb(252, 83, 45, .3);
+  --accent-5: rgb(252, 83, 45, .5);
+  --accent-7: rgb(252, 83, 45, .7);
   --accent: rgb(252, 83, 45);
 }
 
@@ -20,17 +42,23 @@ body {
   margin: 0;
   padding: 0;
   background: var(--background);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-blend-mode: luminosity;
   font-family: 'Roboto', sans-serif;
   font-weight: 400;
   font-style: normal;
   color: var(--text);
+  scrollbar-gutter: stable;
 }
 
 .main {
   margin: 16px 12%;
   padding: 16px;
   border-radius: 12px;
-  background: var(--secondary);
+  background: var(--secondary-7);
 }
 
 .nav-btn {

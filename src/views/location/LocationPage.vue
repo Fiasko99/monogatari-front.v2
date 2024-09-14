@@ -69,8 +69,8 @@ onMounted(() => {
     </h2>
     <CreatePost @update-data="updateData" />
     <CommonPagination v-if="postsCount" :count="parseInt(postsCount)" @get-data="getPosts" />
-    <CommonLoading v-if="loadingPosts" />
-    <div v-else>
+    <CommonLoading full-page v-if="loadingPosts" />
+    <div class="posts" v-else>
       <PostsComponent v-if="posts" :posts="posts" />
       <span v-else>Постов еще нет, но вы можете написать первым!</span>
     </div>

@@ -25,6 +25,7 @@
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 8px;
+  animation: show 1s ease-in-out;
 
   .character {
     flex-basis: 15%;

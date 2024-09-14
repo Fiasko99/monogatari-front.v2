@@ -76,8 +76,8 @@ onMounted(() => {
       :count="parseInt(countCharacterPosts)"
       @get-data="getCharacterPosts"
     />
-    <CommonLoading v-if="loadingCharacterPosts" />
-    <div>
+    <CommonLoading full-page v-if="loadingCharacterPosts" />
+    <div class="posts" v-else>
       <CharacterPosts v-if="characterPosts" :posts="characterPosts" />
       <div v-else>У персонажа нет постов</div>
     </div>

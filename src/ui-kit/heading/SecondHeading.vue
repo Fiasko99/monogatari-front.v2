@@ -1,7 +1,12 @@
-<script setup></script>
+<script setup>
+defineProps({
+  center: Boolean,
+  right: Boolean,
+})
+</script>
 
 <template>
-  <div class="heading">
+  <div :class="['heading', center && 'center']">
     <slot></slot>
   </div>
 </template>
@@ -10,7 +15,10 @@
 .heading {
   margin: 4px 0;
   font-weight: bold;
-  font-size: 24px;
+  font-size: 20px;
   color: var(--text);
+}
+.center {
+  text-align: center;
 }
 </style>

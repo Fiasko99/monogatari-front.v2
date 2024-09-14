@@ -67,6 +67,7 @@ class Fetcher {
   _configBaseUrl(service = 'base') {
     const services = {
       base: import.meta.env.VITE_APP_API_URL,
+      cdn: import.meta.env.VITE_APP_CDN_URL,
       richHtml: import.meta.env.VITE_APP_API_RICH_HTML_URL
     }
     this._http.defaults.baseURL = services[service]

@@ -1,8 +1,7 @@
 .regions {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 6px;
+  gap: 12px;
 
   .region {
     background: var(--secondary);
@@ -11,12 +10,35 @@
     padding: 6px;
     border-radius: 12px;
     box-shadow: 2px 2px 4px 4px var(--background);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    height: 250px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-gutter: stable;
+    
+    &::-webkit-scrollbar {
+      width: 2px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: none;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--primary-5);
+      border-radius: 12px;
+    }
 
     & > .title {
-      margin: 6px 0;
-      font-weight: bolder;
-      font-size: 32px;
-      text-align: center;
+      background: 
+        linear-gradient(
+          90deg, 
+          transparent 15%, 
+          var(--secondary-7) 50%, 
+          transparent 85%
+        );
     }
   }
 }

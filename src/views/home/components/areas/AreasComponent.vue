@@ -1,6 +1,7 @@
 <script setup>
 import Locations from '../locations/LocationsComponent.vue'
 import SecondHeading from '@/ui-kit/heading/SecondHeading.vue'
+import CommonLink from '@/ui-kit/link/CommonLink.vue'
 
 defineProps({
   areas: Array
@@ -9,8 +10,12 @@ defineProps({
 <template>
   <div v-if="areas.length > 0" class="areas">
     <div v-for="area of areas" :key="area.id" class="area">
-      <second-heading class="title">{{ area.name }}</second-heading>
-      <Locations :locations="area.locations" />
+      <div>
+        <second-heading center>
+          <common-link>{{ area.name }}</common-link>
+        </second-heading>
+        <Locations :locations="area.locations" />
+      </div>
     </div>
   </div>
   <div v-else class="areas">В регионе нет областей</div>

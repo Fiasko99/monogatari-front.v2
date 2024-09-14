@@ -1,7 +1,11 @@
-<script setup></script>
+<script setup>
+defineProps({
+  fullPage: Boolean
+})
+</script>
 
 <template>
-  <div class="lds">
+  <div :class="['lds', fullPage && 'lds-full-page']">
     <div class="lds-dual-ring"></div>
   </div>
 </template>
@@ -11,6 +15,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.lds-full-page {
+  height: 100vh;
 }
 .lds-dual-ring {
   color: var(--accent);

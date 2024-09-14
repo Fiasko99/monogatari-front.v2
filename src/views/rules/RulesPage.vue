@@ -1,4 +1,5 @@
 <script setup>
+import FirstHeading from '@/ui-kit/heading/FirstHeading.vue';
 import Fetcher from '@/Fetcher'
 import { onMounted, ref } from 'vue'
 const fetcher = Fetcher('richHtml')
@@ -12,7 +13,7 @@ onMounted(() => {
 </script>
 <template>
   <div>
-    <h1 align="center">Правила</h1>
+    <first-heading center>Правила</first-heading>
     <div v-if="rules" class="rules">
       <div v-for="{ key, title, content } in rules" :key="key" class="rule">
         <component :is="title.tag" v-bind="title.attributes">{{ title.text }}</component>

@@ -3,6 +3,7 @@ import Fetcher from '@/Fetcher'
 import { userStore } from '@/stores/user'
 import { ref, onMounted, computed } from 'vue'
 import { useRoute } from 'vue-router'
+import CommonLoading from '@/ui-kit/loading/CommonLoading.vue'
 import CommonBtn from '@/ui-kit/btn/CommonBtn.vue'
 import CommonLink from '@/ui-kit/link/CommonLink.vue'
 import ThirdHeading from '@/ui-kit/heading/ThirdHeading.vue'
@@ -13,6 +14,7 @@ const route = useRoute()
 const fetcher = Fetcher()
 
 const characters = ref()
+const loadingCharacters = ref(true)
 const addNewCharacter = ref(false)
 const nameNewCharacter = ref('')
 const loadAvatar = ref(false)
@@ -72,6 +74,7 @@ function updateData() {
     .get(`/character/user/${nickname}`)
     .then((res) => (characters.value = res))
     .catch((err) => console.error(err))
+    .finally(() => loadingCharacters.value = false)
 }
 
 onMounted(() => {
@@ -113,34 +116,37 @@ onMounted(() => {
         >
       </div>
     </div>
-    <div class="characters" v-if="characters">
-      <div
-      v-for="character of characters"
-      :class="['character', character.active && 'active']"
-      :key="character.id"
-      >
-        <ThirdHeading>
-          <CommonLink :to="{ name: 'Character', params: { id: character.id } }" class="name">{{
-            character.name
-          }}</CommonLink>
-        </ThirdHeading>
-        <div class="imageWrapper">
-          <img class="image" :src="character.avatar" @error="returnDefaul" alt="" />
-        </div>
-        <div class="btns" v-if="selfProfile">
-          <label class="toggler" title="Активировать" @click="activateCharacter(character.id)">
-            <input
-              type="checkbox"
-              class="switcher"
-              :checked="character.active"
-              :disabled="character.active"
-            />
-            <div class="toggle"></div>
-          </label>
+    <CommonLoading v-if="loadingCharacters" />
+    <div class="charactersWrapper" v-else>
+      <div class="characters" v-if="characters">
+        <div
+        v-for="character of characters"
+        :class="['character', character.active && 'active']"
+        :key="character.id"
+        >
+          <ThirdHeading>
+            <CommonLink :to="{ name: 'Character', params: { id: character.id } }" class="name">{{
+              character.name
+            }}</CommonLink>
+          </ThirdHeading>
+          <div class="imageWrapper">
+            <img class="image" :src="character.avatar" @error="returnDefaul" alt="" />
+          </div>
+          <div class="btns" v-if="selfProfile">
+            <label class="toggler" title="Активировать" @click="activateCharacter(character.id)">
+              <input
+                type="checkbox"
+                class="switcher"
+                :checked="character.active"
+                :disabled="character.active"
+              />
+              <div class="toggle"></div>
+            </label>
+          </div>
         </div>
       </div>
+      <div v-else>У пользователя нет персонажей</div>
     </div>
-    <div v-else>У пользователя нет персонажей</div>
   </div>
 </template>
 <style scoped src="./style.css"></style>

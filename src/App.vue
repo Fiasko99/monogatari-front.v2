@@ -3,6 +3,7 @@ import Fetcher from './Fetcher'
 import { onMounted } from 'vue'
 import { userStore } from '@/stores/user.js'
 import CommonLink from '@/ui-kit/link/CommonLink.vue'
+document.querySelector('body').style.backgroundImage = `url("${import.meta.env.VITE_APP_CDN_URL}/default/background.png")`
 
 const user = userStore()
 const fetcher = Fetcher()

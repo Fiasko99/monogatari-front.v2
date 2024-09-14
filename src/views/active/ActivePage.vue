@@ -2,9 +2,11 @@
 import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import CommonLoading from '@/ui-kit/loading/CommonLoading.vue'
+import FirstHeading from '@/ui-kit/heading/FirstHeading.vue'
 import CommonPagination from '@/ui-kit/pagination/CommonPagination.vue'
 import Fetcher from '@/Fetcher'
 import DemoPosts from './components/demo-posts/ActiveLocations.vue'
+import SecondHeading from '@/ui-kit/heading/SecondHeading.vue'
 
 const route = useRoute()
 
@@ -48,16 +50,18 @@ onMounted(() => {
 </script>
 <template>
   <div>
-    <h1 align="center">Активные локации</h1>
-    <CommonLoading v-if="!activeLocations" />
-    <div v-else>
+    <first-heading center>Активные локации</first-heading>
+    <CommonLoading full-page v-if="!activeLocations" />
+    <div class="activeLocations" v-else>
       <CommonPagination
         v-if="countActiveLocations"
         :count="parseInt(countActiveLocations)"
         @get-data="getActiveLocations"
       />
-      <DemoPosts v-if="activeLocations" :activeLocations="activeLocations" />
-      <div v-else>Активных тем не найдено</div>
+      <DemoPosts v-if="activeLocations && activeLocations.length" :activeLocations="activeLocations" />
+      <div v-else>
+        <SecondHeading center>Активных тем не найдено</SecondHeading>
+      </div>
     </div>
   </div>
 </template>
