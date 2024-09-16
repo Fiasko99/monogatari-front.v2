@@ -8,7 +8,7 @@ defineProps({
 <template>
   <div v-if="locations.length > 0" class="locations">
     <div v-for="location of locations" :key="location.id" class="location">
-      <common-link class="title" :to="{ name: 'Location', params: { id: location.id } }">{{
+      <common-link class="title" :to="{ name: 'Location', params: { locationId: location.id } }">{{
         location.name
       }}</common-link>
     </div>

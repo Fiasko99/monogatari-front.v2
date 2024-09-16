@@ -125,7 +125,7 @@ onMounted(() => {
         :key="character.id"
         >
           <ThirdHeading>
-            <CommonLink :to="{ name: 'Character', params: { id: character.id } }" class="name">{{
+            <CommonLink :to="{ name: 'Character', params: { characterId: character.id } }" class="name">{{
               character.name
             }}</CommonLink>
           </ThirdHeading>

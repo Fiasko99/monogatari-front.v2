@@ -3,10 +3,18 @@ import Fetcher from './Fetcher'
 import { onMounted } from 'vue'
 import { userStore } from '@/stores/user.js'
 import CommonLink from '@/ui-kit/link/CommonLink.vue'
-document.querySelector('body').style.backgroundImage = `url("${import.meta.env.VITE_APP_CDN_URL}/default/background.png")`
+import { useRouter } from 'vue-router';
+document.querySelector('body').style.backgroundImage = `url("${import.meta.env.VITE_APP_CDN_URL}/default/background.jpg")`
 
+const router = useRouter()
 const user = userStore()
 const fetcher = Fetcher()
+
+const existModalRegex = /\/modal(.*)/
+if (location.pathname.match(existModalRegex)) {
+  router.push(location.pathname.replace(existModalRegex, ''))
+}
+
 onMounted(() => {
   fetcher
     .baseRefreshReq()
@@ -16,20 +24,15 @@ onMounted(() => {
 </script>
 
 <template>
+  <button style="position: absolute; top: 0; right: 0; z-index: 100;" @click="console.log(router.getRoutes())">test</button>
   <div data-theme="dark">
     <header class="header">
       <nav class="navigation">
         <div class="nav-left">
           <div title="Форум" class="nav-btn">
-            <CommonLink :to="{ name: 'Home' }" class="nav-link">
+            <CommonLink :to="{ name: 'Regions' }" class="nav-link">
               <img src="./assets/home.svg" alt="" />
             </CommonLink>
-            <div class="transition-list">
-              <CommonLink :to="{ name: 'Active' }" class="link">Актив</CommonLink>
-              <CommonLink :to="{ name: 'Rules' }" class="link">Правила</CommonLink>
-              <CommonLink :to="{ name: 'History' }" class="link">История</CommonLink>
-              <CommonLink :to="{ name: 'Events' }" class="link">События</CommonLink>
-            </div>
           </div>
           <div v-if="user.getAuthStatus" title="Профиль" class="nav-btn">
             <CommonLink
@@ -38,24 +41,6 @@ onMounted(() => {
             >
               <img src="./assets/profile.svg" alt="" />
             </CommonLink>
-            <div class="transition-list">
-              <CommonLink
-                v-if="user.activeCharacter"
-                :to="{ name: 'Character', params: { id: user.activeCharacter.id } }"
-                class="link"
-                >Персонаж</CommonLink
-              >
-              <CommonLink
-                :to="{ name: 'Settings', params: { nickname: user.data.nickname } }"
-                class="link"
-                >Настройки</CommonLink
-              >
-              <CommonLink
-                :to="{ name: 'Logout', params: { nickname: user.data.nickname } }"
-                class="link"
-                >Выйти</CommonLink
-              >
-            </div>
           </div>
           <div v-else title="Профиль" class="nav-btn">
             <CommonLink :to="{ name: 'Signin' }" class="nav-link">
@@ -72,13 +57,11 @@ onMounted(() => {
             <div class="nav-link">
               <img src="./assets/map.svg" alt="" />
             </div>
-            <div class="popup"></div>
           </div>
           <div title="Поиск" class="nav-btn right">
             <div class="nav-link">
               <img src="./assets/search.svg" alt="" />
             </div>
-            <div class="popup"></div>
           </div>
         </div>
       </nav>

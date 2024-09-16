@@ -16,7 +16,7 @@ const countCharacterPosts = ref()
 
 const loadingCharacterPosts = ref(false)
 
-const characterId = route.params.id
+const characterId = route.params.characterId
 
 function getCharacter() {
   fetcher

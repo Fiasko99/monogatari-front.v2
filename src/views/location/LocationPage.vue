@@ -4,8 +4,10 @@ import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import CommonPagination from '@/ui-kit/pagination/CommonPagination.vue'
 import CommonLoading from '@/ui-kit/loading/CommonLoading.vue'
+import ModalViewButton from '@/components/modal-view-btn/ModalViewBtn.vue'
 import CreatePost from './components/create-post/CreatePostComponent.vue'
 import PostsComponent from './components/posts/PostsComponent.vue'
+import SecondHeading from '@/ui-kit/heading/SecondHeading.vue'
 
 const route = useRoute()
 const fetcher = Fetcher()
@@ -17,7 +19,7 @@ const loadingPosts = ref(false)
 
 const postsCount = ref()
 
-const locationId = route.params.id
+const locationId = route.params.locationId
 
 function getPosts() {
   loadingPosts.value = true
@@ -62,11 +64,13 @@ onMounted(() => {
 </script>
 <template>
   <div v-if="location">
-    <h2>
-      {{ location.area.region.name }}
-      -> {{ location.area.name }} ->
+    <SecondHeading>
+      <ModalViewButton v-bind="{ name: 'Region', params: {regionId: location.area.region.id}}">{{ location.area.region.name }}</ModalViewButton>
+      &#11166; 
+      <ModalViewButton v-bind="{ name: 'Area', params: {areaId: location.area.id}}">{{ location.area.name }}</ModalViewButton>
+      &#11166;
       {{ location.name }}
-    </h2>
+    </SecondHeading>
     <CreatePost @update-data="updateData" />
     <CommonPagination v-if="postsCount" :count="parseInt(postsCount)" @get-data="getPosts" />
     <CommonLoading full-page v-if="loadingPosts" />

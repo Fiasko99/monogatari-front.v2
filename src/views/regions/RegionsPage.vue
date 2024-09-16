@@ -2,6 +2,7 @@
 import Fetcher from '@/Fetcher'
 import { onMounted, ref } from 'vue'
 import RegionsComponent from './components/regions/RegionsComponent.vue'
+import AddRegion from './components/add-region/AddRegion.vue'
 import CommonLoading from '@/ui-kit/loading/CommonLoading.vue'
 
 const fetcher = Fetcher()
@@ -18,9 +19,11 @@ onMounted(() => {
 })
 </script>
 <template>
+  <add-region />
   <CommonLoading full-page v-if="loadRegions" />
-  <div class="map" v-else>
+  <div class="world" v-else>
     <RegionsComponent :regions="regions" />
   </div>
+  <router-view />
 </template>
 <style scoped src="./style.css"></style>

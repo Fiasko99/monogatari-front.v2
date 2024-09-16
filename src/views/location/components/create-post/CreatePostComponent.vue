@@ -16,7 +16,7 @@ function sendPost() {
   const data = {
     text: postText.value.innerHTML,
     characterId: user.activeCharacter.id,
-    locationId: route.params.id
+    locationId: route.params.locationId
   }
   fetcher
     .post('/post/create', data)

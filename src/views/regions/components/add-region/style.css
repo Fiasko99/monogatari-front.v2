@@ -1,0 +1,6 @@
+.add-region {
+  position: relative;
+  margin: 12px;
+  display: flex;
+  justify-content: end;
+}

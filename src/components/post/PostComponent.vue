@@ -72,7 +72,7 @@ function getTime(time) {
     </div>
     <div class="post-info">
       <div class="character">
-        <CommonLink class="name" :to="{ name: 'Character', params: { id: character.id } }">{{
+        <CommonLink class="name" :to="{ name: 'Character', params: { characterId: character.id } }">{{
           character.name
         }}</CommonLink>
         <div class="imageWrapper">

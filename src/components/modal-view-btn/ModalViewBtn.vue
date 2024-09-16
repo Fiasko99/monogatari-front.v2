@@ -1,12 +1,11 @@
 <script setup>
 import { useRouter, useRoute } from 'vue-router'
-import CommonBtn from './CommonBtn.vue'
 
 const route = useRoute()
 const router = useRouter()
 
 const props = defineProps({
-  view: {
+  name: {
     type: String,
     required: true
   },
@@ -19,16 +18,17 @@ const props = defineProps({
 })
 
 function openModal() {
-  const viewRoute = router.getRoutes().find((a) => a.name === props.view)
-  const newViewName = 'ChildModal' + props.view
+  const viewRoute = router.getRoutes()
+    .find((a) => a.name === props.name)    
+  const newViewName = 'ChildModal' + viewRoute.name
   const modalRoute = {
-    path: '',
+    path: 'modal',
     name: 'Modal' + route.name,
-    props: { view: props.view, previousView: route.name },
-    component: () => import('@/ui-kit/modal/ModalView.vue'),
+    props: { view: props, previousView: { name: route.name, params: route.params } },
+    component: () => import('@/views/modal/ModalView.vue'),
     children: [
       {
-        path: viewRoute.path,
+        path: viewRoute.path.slice(1, viewRoute.path.length),
         name: newViewName,
         components: viewRoute.components
       }
@@ -39,9 +39,19 @@ function openModal() {
 }
 </script>
 <template>
-  <CommonBtn @click="openModal">
+  <span class="btn" @click="openModal">
     <slot></slot>
-  </CommonBtn>
+  </span>
   <router-view />
 </template>
-<style scoped></style>
+<style scoped>
+.btn {
+  text-decoration: none;
+  color: var(--link);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--link-active);
+  }
+}
+</style>

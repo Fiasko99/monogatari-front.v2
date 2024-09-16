@@ -1,7 +1,7 @@
 <script setup>
+import ModalViewBtn from '@/components/modal-view-btn/ModalViewBtn.vue';
 import Locations from '../locations/LocationsComponent.vue'
 import SecondHeading from '@/ui-kit/heading/SecondHeading.vue'
-import CommonLink from '@/ui-kit/link/CommonLink.vue'
 
 defineProps({
   areas: Array
@@ -12,7 +12,9 @@ defineProps({
     <div v-for="area of areas" :key="area.id" class="area">
       <div>
         <second-heading center>
-          <common-link>{{ area.name }}</common-link>
+          <ModalViewBtn v-bind="{ name: 'Area', params: {areaId: area.id} }">
+            {{ area.name }}
+          </ModalViewBtn>
         </second-heading>
         <Locations :locations="area.locations" />
       </div>

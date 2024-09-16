@@ -20,7 +20,7 @@ defineProps({
   }
 })
 
-function returnDefaul(e) {
+function returnDefault(e) {
   e.target.src = `${import.meta.env.VITE_APP_CDN_URL}/default/characterAvatar.svg`
 }
 
@@ -72,7 +72,7 @@ function getTime(time) {
     <div class="top">
       <div class="path">
         {{ location.area.region.name }} -> {{ location.area.name }} ->
-        <CommonLink :to="{ name: 'Location', params: { id: location.id } }">{{
+        <CommonLink :to="{ name: 'Location', params: { locationId: location.id } }">{{
           location.name
         }}</CommonLink>
       </div>
@@ -92,11 +92,11 @@ function getTime(time) {
       <div class="info">
         <span>{{ getTime(post.createdAt) }}</span>
         <div v-if="character" class="character">
-          <CommonLink :to="{ name: 'Character', params: { id: character.id } }">{{
+          <CommonLink :to="{ name: 'Character', params: { characterId: character.id } }">{{
             character.name
           }}</CommonLink>
           <div class="imageWrapper">
-            <img class="image" :src="post.character.avatar" @error="returnDefaul" alt="" />
+            <img class="image" :src="post.character.avatar" @error="returnDefault" alt="" />
           </div>
         </div>
       </div>

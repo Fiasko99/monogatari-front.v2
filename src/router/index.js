@@ -4,19 +4,14 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
+      path: '',
       name: 'Main',
       component: () => import('@/views/main/MainPage.vue'),
       children: [
         {
           path: '',
-          name: 'Home',
-          component: () => import('@/views/home/HomePage.vue')
-        },
-        {
-          path: 'rules',
-          name: 'Rules',
-          component: () => import('@/views/rules/RulesPage.vue')
+          name: 'Regions',
+          component: () => import('@/views/regions/RegionsPage.vue'),
         },
         {
           path: 'active',
@@ -24,24 +19,36 @@ const router = createRouter({
           component: () => import('@/views/active/ActivePage.vue')
         },
         {
-          path: 'history',
-          name: 'History',
-          component: () => import('@/views/history/HistoryPage.vue')
-        },
-        {
-          path: 'events',
-          name: 'Events',
-          component: () => import('@/views/events/EventsPage.vue')
+          path: 'world',
+          name: 'World',
+          component: () => import('@/views/world/WorldPage.vue'),
+          children: [
+            {
+              path: '',
+              name: 'History',
+              component: () => import('@/views/history/HistoryPage.vue')
+            },
+            {
+              path: 'rules',
+              name: 'Rules',
+              component: () => import('@/views/rules/RulesPage.vue')
+            },
+            {
+              path: 'events',
+              name: 'Events',
+              component: () => import('@/views/events/EventsPage.vue')
+            }
+          ]
         }
       ]
     },
     {
-      path: '/location/:id',
+      path: '/location/:locationId',
       name: 'Location',
       component: () => import('@/views/location/LocationPage.vue')
     },
     {
-      path: '/character/:id',
+      path: '/character/:characterId',
       name: 'Character',
       component: () => import('@/views/character/CharacterPage.vue')
     },
@@ -84,7 +91,17 @@ const router = createRouter({
           component: () => import('@/views/logout/LogoutPage.vue')
         }
       ]
-    }
+    },
+    {
+      path: '/region/:regionId',
+      name: 'Region',
+      component: () => import('@/views/region/RegionPage.vue')
+    },
+    {
+      path: '/area/:areaId',
+      name: 'Area',
+      component: () => import('@/views/area/AreaPage.vue')
+    },
   ]
 })
 
