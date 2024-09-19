@@ -81,12 +81,16 @@ onMounted(() => {
     <CommonBtn :disabled="currentPage === 1" @click="changePage(currentPage - 1)">
       &larr;
     </CommonBtn>
-    <CommonBtn :disabled="currentPage === 1" @click="changePage(1)">1</CommonBtn>
+    <CommonBtn :disabled="currentPage === 1" @click="changePage(1)">
+      {{ currentPage === 1 ? '...' : '1' }}
+    </CommonBtn>
     <div id="currentPage">
-      <CommonBtn @click="openTooltip('#currentPage')"> {{ currentPage }} </CommonBtn>
+      <CommonBtn @click="openTooltip('#currentPage')">
+        {{ currentPage }}
+      </CommonBtn>
     </div>
     <CommonBtn :disabled="currentPage === getCountPages" @click="changePage(getCountPages)">
-      {{ getCountPages }}
+      {{ currentPage === getCountPages ? '...' : getCountPages }}
     </CommonBtn>
     <CommonBtn
       :disabled="currentPage === getCountPages"

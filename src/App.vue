@@ -3,17 +3,10 @@ import Fetcher from './Fetcher'
 import { onMounted } from 'vue'
 import { userStore } from '@/stores/user.js'
 import CommonLink from '@/ui-kit/link/CommonLink.vue'
-import { useRouter } from 'vue-router';
 document.querySelector('body').style.backgroundImage = `url("${import.meta.env.VITE_APP_CDN_URL}/default/background.jpg")`
 
-const router = useRouter()
 const user = userStore()
 const fetcher = Fetcher()
-
-const existModalRegex = /\/modal(.*)/
-if (location.pathname.match(existModalRegex)) {
-  router.push(location.pathname.replace(existModalRegex, ''))
-}
 
 onMounted(() => {
   fetcher
@@ -24,7 +17,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <button style="position: absolute; top: 0; right: 0; z-index: 100;" @click="console.log(router.getRoutes())">test</button>
   <div data-theme="dark">
     <header class="header">
       <nav class="navigation">
@@ -46,10 +38,6 @@ onMounted(() => {
             <CommonLink :to="{ name: 'Signin' }" class="nav-link">
               <img src="./assets/profile.svg" alt="" />
             </CommonLink>
-            <div class="transition-list">
-              <CommonLink :to="{ name: 'Signin' }" class="link">Войти</CommonLink>
-              <CommonLink :to="{ name: 'Signup' }" class="link">Регистрация</CommonLink>
-            </div>
           </div>
         </div>
         <div class="nav-right">

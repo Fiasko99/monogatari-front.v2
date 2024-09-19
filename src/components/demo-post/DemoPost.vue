@@ -1,5 +1,9 @@
 <script setup>
 import CommonLink from '@/ui-kit/link/CommonLink.vue'
+import { useRoute } from 'vue-router';
+
+const route = useRoute()
+const routeName = route.name
 
 defineProps({
   post: {
@@ -66,15 +70,21 @@ function getTime(time) {
   return customTimeStr
 }
 </script>
-
 <template>
   <div class="post">
     <div class="top">
       <div class="path">
-        {{ location.area.region.name }} -> {{ location.area.name }} ->
-        <CommonLink :to="{ name: 'Location', params: { locationId: location.id } }">{{
-          location.name
-        }}</CommonLink>
+        <CommonLink :to="{ name: `RegionIn${routeName}`, params: { regionId: location.area.region.id } }">
+          {{ location.area.region.name }} 
+        </CommonLink>
+        &#11166; 
+        <CommonLink :to="{ name: `AreaIn${routeName}`, params: { areaId: location.area.id } }">
+          {{ location.area.name }} 
+        </CommonLink>
+        &#11166;
+        <CommonLink :to="{ name: 'Location', params: { locationId: location.id } }">
+          {{ location.name }}
+        </CommonLink>
       </div>
       <div class="info">
         <CommonLink

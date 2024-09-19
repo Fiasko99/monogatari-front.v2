@@ -16,7 +16,7 @@ class Fetcher {
         const reqData = await req(...reqArgs)
         return reqData
       }
-      return Promise.reject(err)
+      return Promise.reject(err.data)
     })
     return res
   }
@@ -59,8 +59,8 @@ class Fetcher {
 
   _createConfig() {
     this._http.interceptors.response.use(
-      (res) => res.data,
-      (err) => Promise.reject(err.response.data)
+      (res) => Promise.resolve(res.data),
+      (err) => Promise.reject(err.response)
     )
   }
 

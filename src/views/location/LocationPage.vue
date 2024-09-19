@@ -4,10 +4,10 @@ import { onMounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import CommonPagination from '@/ui-kit/pagination/CommonPagination.vue'
 import CommonLoading from '@/ui-kit/loading/CommonLoading.vue'
-import ModalViewButton from '@/components/modal-view-btn/ModalViewBtn.vue'
 import CreatePost from './components/create-post/CreatePostComponent.vue'
 import PostsComponent from './components/posts/PostsComponent.vue'
 import SecondHeading from '@/ui-kit/heading/SecondHeading.vue'
+import CommonLink from '@/ui-kit/link/CommonLink.vue'
 
 const route = useRoute()
 const fetcher = Fetcher()
@@ -61,13 +61,18 @@ function updateData() {
 onMounted(() => {
   updateData()
 })
+
 </script>
 <template>
   <div v-if="location">
     <SecondHeading>
-      <ModalViewButton v-bind="{ name: 'Region', params: {regionId: location.area.region.id}}">{{ location.area.region.name }}</ModalViewButton>
+      <CommonLink :to="{ name: 'RegionInLocation', params: { regionId: location.area.region.id } }">
+        {{ location.area.region.name }}
+      </CommonLink>
       &#11166; 
-      <ModalViewButton v-bind="{ name: 'Area', params: {areaId: location.area.id}}">{{ location.area.name }}</ModalViewButton>
+      <CommonLink :to="{ name: 'AreaInLocation', params: { areaId: location.area.id }}">
+        {{ location.area.name }}
+      </CommonLink>
       &#11166;
       {{ location.name }}
     </SecondHeading>
@@ -80,5 +85,6 @@ onMounted(() => {
     </div>
   </div>
   <h1 v-else>Локация не существует</h1>
+  <router-view></router-view>
 </template>
 <style scoped src="./style.css"></style>

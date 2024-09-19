@@ -1,21 +1,18 @@
 <script setup>
-import { useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 import CommonBtn from '@/ui-kit/btn/CommonBtn.vue'
 import ModalComponent from '@/ui-kit/modal/ModalComponent.vue'
 const router = useRouter()
+const route = useRoute()
 
-const props = defineProps({
-  view: Object,
-  previousView: Object
-})
+const [nextPage, previousPage] = route.name.split('In')
 
 function closeModal() {
-  router.push(props.previousView)
-  router.removeRoute('Modal' + props.previousView.name)
+  router.push({ name: previousPage })
 }
 
 function openPage() {
-  router.push(props.view)
+  router.push({ name: nextPage })
 }
 </script>
 <template>

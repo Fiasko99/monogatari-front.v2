@@ -1,7 +1,7 @@
 <script setup>
-import ModalViewBtn from '@/components/modal-view-btn/ModalViewBtn.vue';
 import Areas from '../areas/AreasComponent.vue'
 import FirstHeading from '@/ui-kit/heading/FirstHeading.vue'
+import CommonLink from '@/ui-kit/link/CommonLink.vue';
 
 defineProps({
   regions: Array
@@ -17,9 +17,9 @@ const cdn = import.meta.env.VITE_APP_CDN_URL
       class="region" 
       :style="`background-image: url(${cdn}${region.image});`">
       <first-heading center class="title">
-        <ModalViewBtn v-bind="{ name: 'Region', params: {regionId: region.id} }">
+        <CommonLink :to="{ name: 'RegionInRegions', params: {regionId: region.id} }">
           {{ region.name }}
-        </ModalViewBtn>
+        </CommonLink>
       </first-heading>
       <Areas :areas="region.areas" />
     </div>

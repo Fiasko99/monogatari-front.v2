@@ -6,6 +6,7 @@ import CommonPagination from '@/ui-kit/pagination/CommonPagination.vue'
 import CommonLoading from '@/ui-kit/loading/CommonLoading.vue'
 import CharacterPosts from './components/character-posts/CharacterPosts.vue'
 import CommonLink from '@/ui-kit/link/CommonLink.vue'
+import FirstHeading from '@/ui-kit/heading/FirstHeading.vue'
 
 const route = useRoute()
 const fetcher = Fetcher()
@@ -61,7 +62,7 @@ onMounted(() => {
 </script>
 <template>
   <div v-if="character">
-    <h1 align="center">Персонаж</h1>
+    <first-heading center>Персонаж</first-heading>
     <div class="character">
       <div>
         Автор персонажа: 
@@ -83,5 +84,6 @@ onMounted(() => {
     </div>
   </div>
   <div v-else>Персонажа не существует</div>
+  <router-view></router-view>
 </template>
 <style scoped src="./style.css"></style>

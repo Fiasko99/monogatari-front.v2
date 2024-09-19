@@ -64,5 +64,6 @@ onMounted(() => {
       </div>
     </div>
   </div>
+  <router-view></router-view>
 </template>
 <style scoped src="./style.css"></style>
