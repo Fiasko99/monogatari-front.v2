@@ -87,7 +87,6 @@ onMounted(() => {
           {{ location.name }}
         </FirstHeading>
         <div class="imageWrapper">
-          {{ location }}
           <img :src="defImg(location.image)">
         </div>
         <div class="description">
