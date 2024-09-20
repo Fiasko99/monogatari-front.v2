@@ -7,6 +7,7 @@ import CommonLoading from '@/ui-kit/loading/CommonLoading.vue'
 import CharacterPosts from './components/character-posts/CharacterPosts.vue'
 import CommonLink from '@/ui-kit/link/CommonLink.vue'
 import FirstHeading from '@/ui-kit/heading/FirstHeading.vue'
+import defAvatar from '@/heplers/def-avatar'
 
 const route = useRoute()
 const fetcher = Fetcher()
@@ -64,12 +65,19 @@ onMounted(() => {
   <div v-if="character">
     <first-heading center>Персонаж</first-heading>
     <div class="character">
-      <div>
-        Автор персонажа: 
-        <CommonLink :to="{ name: 'Characters', params: { nickname: character.user.nickname } }">{{ character.user.nickname }}</CommonLink>
+      <div class="left">
+        <div class="imageWrapper">
+          <img class="image" :src="defAvatar(character.avatar)" />
+        </div>
       </div>
-      <div class="name">Имя персонажа: {{ character.name }}</div>
-      <div>Статус: {{ character.active ? 'Активен' : 'Неактивен' }}</div>
+      <div class="right">
+        <div>
+          Автор персонажа: 
+          <CommonLink :to="{ name: 'Characters', params: { nickname: character.user.nickname } }">{{ character.user.nickname }}</CommonLink>
+        </div>
+        <div class="name">Имя персонажа: {{ character.name }}</div>
+        <div>Статус: {{ character.active ? 'Активен' : 'Неактивен' }}</div>
+      </div>
     </div>
     <hr />
     <CommonPagination

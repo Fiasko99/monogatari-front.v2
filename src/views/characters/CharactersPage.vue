@@ -8,6 +8,7 @@ import CommonBtn from '@/ui-kit/btn/CommonBtn.vue'
 import CommonLink from '@/ui-kit/link/CommonLink.vue'
 import ThirdHeading from '@/ui-kit/heading/ThirdHeading.vue'
 import FirstHeading from '@/ui-kit/heading/FirstHeading.vue'
+import defAvatar from '@/heplers/def-avatar'
 
 const user = userStore()
 const route = useRoute()
@@ -130,7 +131,7 @@ onMounted(() => {
             }}</CommonLink>
           </ThirdHeading>
           <div class="imageWrapper">
-            <img class="image" :src="character.avatar" @error="returnDefaul" alt="" />
+            <img class="image" :src="defAvatar(character.avatar)" />
           </div>
           <div class="btns" v-if="selfProfile">
             <label class="toggler" title="Активировать" @click="activateCharacter(character.id)">

@@ -1,4 +1,5 @@
 <script setup>
+import defAvatar from '@/heplers/def-avatar';
 import CommonLink from '@/ui-kit/link/CommonLink.vue'
 import { useRoute } from 'vue-router';
 
@@ -23,10 +24,6 @@ defineProps({
     required: false
   }
 })
-
-function returnDefault(e) {
-  e.target.src = `${import.meta.env.VITE_APP_CDN_URL}/default/characterAvatar.svg`
-}
 
 function getTime(time) {
   const date = new Date(time)
@@ -106,7 +103,7 @@ function getTime(time) {
             character.name
           }}</CommonLink>
           <div class="imageWrapper">
-            <img class="image" :src="post.character.avatar" @error="returnDefault" alt="" />
+            <img class="image" :src="defAvatar(post.character.avatar)" />
           </div>
         </div>
       </div>

@@ -15,6 +15,7 @@ defineProps({
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 .lds-full-page {
   height: 100vh;

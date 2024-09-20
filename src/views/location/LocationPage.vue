@@ -8,18 +8,23 @@ import CreatePost from './components/create-post/CreatePostComponent.vue'
 import PostsComponent from './components/posts/PostsComponent.vue'
 import SecondHeading from '@/ui-kit/heading/SecondHeading.vue'
 import CommonLink from '@/ui-kit/link/CommonLink.vue'
+import CommonBtn from '@/ui-kit/btn/CommonBtn.vue'
+import ModalComponent from '@/ui-kit/modal/ModalComponent.vue'
+import FirstHeading from '@/ui-kit/heading/FirstHeading.vue'
+import defImg from '@/heplers/def-img'
 
 const route = useRoute()
 const fetcher = Fetcher()
-
 const location = ref()
 const posts = ref()
-
 const loadingPosts = ref(false)
-
 const postsCount = ref()
-
 const locationId = route.params.locationId
+const showLocationModal = ref(false)
+
+function changeShowLocationModal() {
+  showLocationModal.value = !showLocationModal.value
+}
 
 function getPosts() {
   loadingPosts.value = true
@@ -74,7 +79,21 @@ onMounted(() => {
         {{ location.area.name }}
       </CommonLink>
       &#11166;
-      {{ location.name }}
+      <CommonBtn @click="changeShowLocationModal">
+        {{ location.name }}
+      </CommonBtn>
+      <ModalComponent v-if="showLocationModal" @close-modal="changeShowLocationModal">
+        <FirstHeading>
+          {{ location.name }}
+        </FirstHeading>
+        <div class="imageWrapper">
+          {{ location }}
+          <img :src="defImg(location.image)">
+        </div>
+        <div class="description">
+          {{ location.description ? location.description : 'Описание не найдено'}}
+        </div>
+      </ModalComponent>
     </SecondHeading>
     <CreatePost @update-data="updateData" />
     <CommonPagination v-if="postsCount" :count="parseInt(postsCount)" @get-data="getPosts" />

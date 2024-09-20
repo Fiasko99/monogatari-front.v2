@@ -1,4 +1,5 @@
 <script setup>
+import defImg from '@/heplers/def-img';
 import Areas from '../areas/AreasComponent.vue'
 import FirstHeading from '@/ui-kit/heading/FirstHeading.vue'
 import CommonLink from '@/ui-kit/link/CommonLink.vue';
@@ -7,7 +8,6 @@ defineProps({
   regions: Array
 })
 
-const cdn = import.meta.env.VITE_APP_CDN_URL
 </script>
 <template>
   <div v-if="regions && regions.length" class="regions">
@@ -15,7 +15,7 @@ const cdn = import.meta.env.VITE_APP_CDN_URL
       v-for="region of regions" 
       :key="region.name + region.id" 
       class="region" 
-      :style="`background-image: url(${cdn}${region.image});`">
+      :style="`background-image: url(${defImg(region.image)});`">
       <first-heading center class="title">
         <CommonLink :to="{ name: 'RegionInRegions', params: {regionId: region.id} }">
           {{ region.name }}
