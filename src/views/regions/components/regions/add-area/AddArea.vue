@@ -9,10 +9,10 @@ const changeAddNewRegion = () => {
 }
 </script>
 <template>
-  <div class="add-region">
+  <div class="add-area">
     <CommonBtn @click="changeAddNewRegion">+</CommonBtn>
     <modal-component v-if="addNewRegion" @close-modal="changeAddNewRegion">
-      Новый регион
+      Новая область
     </modal-component>
   </div>
 </template>

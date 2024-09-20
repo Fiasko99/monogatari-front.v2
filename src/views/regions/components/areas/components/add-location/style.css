@@ -1,0 +1,6 @@
+.add-location {
+  position: relative;
+  margin: 12px;
+  display: flex;
+  justify-content: end;
+}

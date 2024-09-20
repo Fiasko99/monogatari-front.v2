@@ -3,6 +3,7 @@ import defImg from '@/heplers/def-img';
 import Areas from '../areas/AreasComponent.vue'
 import FirstHeading from '@/ui-kit/heading/FirstHeading.vue'
 import CommonLink from '@/ui-kit/link/CommonLink.vue';
+import AddArea from './add-area/AddArea.vue';
 
 defineProps({
   regions: Array
@@ -16,16 +17,19 @@ defineProps({
       :key="region.name + region.id" 
       class="region" 
       :style="`background-image: url(${defImg(region.image)});`">
-      <first-heading center class="title">
-        <CommonLink :to="{ name: 'RegionInRegions', params: {regionId: region.id} }">
-          {{ region.name }}
-        </CommonLink>
-      </first-heading>
+      <div class="heading-wrapper">
+        <FirstHeading center class="title">
+          <CommonLink :to="{ name: 'RegionInRegions', params: {regionId: region.id} }">
+            {{ region.name }}
+          </CommonLink>
+        </FirstHeading>
+        <AddArea />
+      </div>
       <Areas :areas="region.areas" />
     </div>
   </div>
   <div v-else>
-    <first-heading center>В мире нет регионов</first-heading>
+    <FirstHeading center>В мире нет регионов</FirstHeading>
   </div>
 </template>
 <style scoped src="./style.css"></style>
